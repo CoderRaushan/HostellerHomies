@@ -11,11 +11,11 @@ List.propTypes = {
 function List({ list, title, icon, addClasses }) {
   return (
     <div
-      className={`bg-neutral-950 px-7 py-5 rounded-xl shadow-xl w-full md:max-w-[350px] max-h-96 overflow-auto ${addClasses}`}
+      className={`bg-white px-7 py-5 rounded-xl shadow-xl w-full md:max-w-[350px] max-h-96 overflow-auto ${addClasses}`}
     >
       <div className="flex flex-col justify-between h-full">
-        <span className="text-white font-bold text-xl ml-3">New {title}</span>
-        <ul className="divide-y divide-gray-700 text-white">
+        <span className="text-black font-bold text-xl ml-3">New {title}</span>
+        <ul className="divide-y divide-gray-700 text-black">
           {list.length === 0 ? (
             <li className="mt-2 pl-3 mb-5">No new {title}</li>
           ) : (
@@ -39,7 +39,7 @@ function List({ list, title, icon, addClasses }) {
             ))
           )}
         </ul>
-        <Link className="py-3 text-lg text-center rounded-lg w-full text-white border-blue-600 border-2 hover:bg-blue-600 transition-all" to={title}>
+        <Link className="py-3 text-lg text-center rounded-lg w-full text-black border-blue-600 border-2 hover:bg-blue-600 transition-all" to={title}>
           Manage {title}
         </Link>
       </div>
