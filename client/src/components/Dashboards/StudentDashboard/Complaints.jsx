@@ -17,7 +17,7 @@ const Input = ({ field }) => {
         required={field.req}
         onChange={field.onChange}
         value={field.value}
-        className="border text-sm rounded-lg block w-full p-2.5 bg-white border-gray-300 text-gray-800 focus:ring-indigo-500 focus:border-indigo-500"
+        className="border text-sm rounded-lg block w-full p-2.5 bg-white border-gray-300 text-black-800 focus:ring-indigo-500 focus:border-indigo-500"
       />
     </div>
   );
