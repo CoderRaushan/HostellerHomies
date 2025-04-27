@@ -18,8 +18,10 @@ function Sidebar({ links }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const sidebarRef = useRef(null);
+  const hoverTimeoutRef = useRef(null);
 
   const logout = () => {
     localStorage.removeItem("student");
@@ -29,6 +31,21 @@ function Sidebar({ links }) {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleMouseEnter = () => {
+    if (!isOpen && windowWidth >= 768) {
+      clearTimeout(hoverTimeoutRef.current);
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isOpen && windowWidth >= 768) {
+      hoverTimeoutRef.current = setTimeout(() => {
+        setIsHovered(false);
+      }, 300);
+    }
   };
 
   const handleClickOutside = (event) => {
@@ -44,10 +61,9 @@ function Sidebar({ links }) {
 
   const setWindowDimensions = () => {
     setWindowWidth(window.innerWidth);
-    if (window.innerWidth >= 768) {
-      setIsOpen(true);
-    } else {
+    if (window.innerWidth < 768) {
       setIsOpen(false);
+      setIsHovered(false);
     }
   };
 
@@ -58,6 +74,7 @@ function Sidebar({ links }) {
     return () => {
       window.removeEventListener("resize", setWindowDimensions);
       document.removeEventListener("mousedown", handleClickOutside);
+      clearTimeout(hoverTimeoutRef.current);
     };
   }, [isOpen, windowWidth]);
 
@@ -67,7 +84,7 @@ function Sidebar({ links }) {
   // Animation variants
   const sidebarVariants = {
     open: { 
-      width: windowWidth >= 768 ? "16rem" : "16rem",
+      width: "16rem",
       boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
       transition: { 
         type: "spring", 
@@ -81,39 +98,27 @@ function Sidebar({ links }) {
       transition: { 
         type: "spring", 
         stiffness: 300, 
-        damping: 30,
-        when: "afterChildren" 
-      }
-    }
-  };
-
-  const itemVariants = {
-    open: { 
-      opacity: 1, 
-      x: 0,
-      transition: { 
-        delay: 0.1,
-        staggerChildren: 0.05,
-        delayChildren: 0.1
+        damping: 30
       }
     },
-    closed: { 
-      opacity: windowWidth >= 768 ? 1 : 0,
-      x: -20,
+    hovered: {
+      width: "16rem",
+      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
       transition: { 
-        staggerChildren: 0.05,
-        staggerDirection: -1
+        type: "spring", 
+        stiffness: 300, 
+        damping: 30 
       }
     }
   };
 
-  const linkTextVariants = {
+  const textVariants = {
     open: { 
-      opacity: 1, 
+      opacity: 1,
       x: 0,
       display: "block",
       transition: { 
-        delay: 0.2
+        delay: 0.1 
       }
     },
     closed: { 
@@ -122,7 +127,20 @@ function Sidebar({ links }) {
       transitionEnd: { 
         display: "none" 
       }
+    },
+    hovered: { 
+      opacity: 1,
+      x: 0,
+      display: "block",
+      transition: { 
+        delay: 0.1 
+      }
     }
+  };
+
+  const toggleIconVariants = {
+    open: { rotate: 0 },
+    closed: { rotate: 180 },
   };
 
   const overlayVariants = {
@@ -136,43 +154,75 @@ function Sidebar({ links }) {
     }
   };
 
+  // Determine current sidebar state for animations
+  const sidebarState = isOpen ? "open" : (isHovered ? "hovered" : "closed");
+
   return (
     <>
-      {/* Toggle Button with Animation */}
-      <motion.button
-        className="fixed md:hidden z-50 top-4 right-4 bg-white p-2 rounded-full shadow-lg text-blue-600 hover:bg-blue-50"
-        onClick={toggleMenu}
-        whileTap={{ scale: 0.9 }}
-        animate={{ rotate: isOpen ? 180 : 0 }}
-        transition={{ duration: 0.3 }}
-        aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
-      >
-        <svg
-          className="w-6 h-6"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          {isOpen ? (
-            <path d="M18 6L6 18M6 6l12 12" />
-          ) : (
-            <path d="M3 12h18M3 6h18M3 18h18" />
-          )}
-        </svg>
-      </motion.button>
-
       {/* Animated Sidebar */}
       <motion.div
         ref={sidebarRef}
         className="fixed top-0 left-0 h-full bg-white border-r border-gray-200 overflow-hidden z-40"
         initial={windowWidth >= 768 ? "open" : "closed"}
-        animate={isOpen ? "open" : "closed"}
+        animate={sidebarState}
         variants={sidebarVariants}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
+        {/* Toggle Icon in Sidebar */}
+        <div className="absolute top-4 right-4 z-50 hidden md:block">
+          <motion.button
+            onClick={toggleMenu}
+            className="bg-blue-100 p-1 rounded-full text-blue-600 hover:bg-blue-200 transition-colors"
+            whileTap={{ scale: 0.9 }}
+            animate={isOpen ? "open" : "closed"}
+            variants={toggleIconVariants}
+            aria-label={isOpen ? "Collapse sidebar" : "Expand sidebar"}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </motion.button>
+        </div>
+
+        {/* Mobile Toggle Button */}
+        <motion.button
+          className="fixed md:hidden z-50 top-4 right-4 bg-white p-2 rounded-full shadow-lg text-blue-600 hover:bg-blue-50"
+          onClick={toggleMenu}
+          whileTap={{ scale: 0.9 }}
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
+        >
+          <svg
+            className="w-6 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {isOpen ? (
+              <path d="M18 6L6 18M6 6l12 12" />
+            ) : (
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            )}
+          </svg>
+        </motion.button>
+
         {/* Header with Animation */}
         <Link
           to={`/${dashboardType}-dashboard`}
@@ -181,6 +231,7 @@ function Sidebar({ links }) {
           <motion.div 
             whileHover={{ rotate: 10 }}
             transition={{ duration: 0.2 }}
+            className="flex-shrink-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +239,7 @@ function Sidebar({ links }) {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 text-white flex-shrink-0"
+              className="w-6 h-6 text-white"
             >
               <path
                 strokeLinecap="round"
@@ -198,45 +249,62 @@ function Sidebar({ links }) {
             </svg>
           </motion.div>
           <motion.span 
-            className="text-lg font-semibold text-white transition-opacity"
-            variants={linkTextVariants}
+            className="text-lg font-semibold text-white whitespace-nowrap"
+            variants={textVariants}
+            initial={windowWidth >= 768 ? "open" : "closed"}
+            animate={sidebarState}
           >
             Dashboard
           </motion.span>
         </Link>
 
         {/* Navigation Links with Animation */}
-        <motion.div 
-          className="flex flex-col h-[calc(100%-136px)] overflow-y-auto py-4"
-          variants={itemVariants}
-        >
+        <div className="flex flex-col h-[calc(100%-136px)] overflow-y-auto py-4">
           {links.map((link) => (
-            <motion.div key={link.text} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-              <Link
-                to={link.url}
-                className={`flex items-center gap-3 px-4 py-3 transition-colors
-                  ${location.pathname === link.url
-                    ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600"
-                    : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
-                  }`}
-              >
+            <Link
+              to={link.url}
+              key={link.text}
+              className={`flex items-center gap-3 px-4 py-3 transition-colors relative overflow-hidden
+                ${location.pathname === link.url
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                }`}
+            >
+              {/* Active indicator */}
+              {location.pathname === link.url && (
                 <motion.div 
-                  className="text-current flex-shrink-0"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {link.svg}
-                </motion.div>
-                <motion.span 
-                  className="text-sm font-medium transition-opacity"
-                  variants={linkTextVariants}
-                >
+                  className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600"
+                  layoutId="activeIndicator"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+              
+              <motion.div 
+                className="text-current flex-shrink-0"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
+                {link.svg}
+              </motion.div>
+              
+              <motion.span 
+                className="text-sm font-medium whitespace-nowrap"
+                variants={textVariants}
+                initial={windowWidth >= 768 ? "open" : "closed"}
+                animate={sidebarState}
+              >
+                {link.text}
+              </motion.span>
+              
+              {/* Tooltip for collapsed state */}
+              {!isOpen && !isHovered && windowWidth >= 768 && (
+                <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-opacity duration-200 z-50">
                   {link.text}
-                </motion.span>
-              </Link>
-            </motion.div>
+                </div>
+              )}
+            </Link>
           ))}
-        </motion.div>
+        </div>
 
         {/* Logout Button with Animation */}
         <div className="absolute bottom-0 left-0 w-full p-4 border-t border-gray-200 bg-gray-50">
@@ -261,7 +329,12 @@ function Sidebar({ links }) {
                 d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
               />
             </svg>
-            <motion.span variants={linkTextVariants}>
+            <motion.span 
+              variants={textVariants}
+              initial={windowWidth >= 768 ? "open" : "closed"}
+              animate={sidebarState}
+              className="whitespace-nowrap"
+            >
               Log Out
             </motion.span>
           </motion.button>
