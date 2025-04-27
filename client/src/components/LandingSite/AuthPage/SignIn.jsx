@@ -58,7 +58,16 @@ export default function SignIn() {
         const studentResult = await studentRes.json();
 
         if (studentResult.success) {
-          localStorage.setItem("student", JSON.stringify(studentResult.student));
+          console.log(studentResult.student);
+          if(studentResult.isAdmin)
+          {
+            localStorage.setItem("admin", JSON.stringify(studentResult.student));
+          }
+          else 
+          {
+            localStorage.setItem("student", JSON.stringify(studentResult.student));
+          }
+          
           
           // Show success animation before navigating
           toast.success("Login successful! Redirecting...", {
