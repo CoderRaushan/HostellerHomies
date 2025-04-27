@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 function Invoices() {
   const [invoiceList, setInvoiceList] = useState([]);
@@ -12,9 +12,9 @@ function Invoices() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        },
-        body: JSON.stringify({student: student._id}),
-      })
+      },
+      body: JSON.stringify({ student: student._id }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -22,23 +22,21 @@ function Invoices() {
           let List = [];
           let paidInvoices = 0;
           let pendingInvoices = 0;
-    
+
           invoices.forEach((invoice) => {
-            if (invoice.status.toLowerCase === "paid") {
+            if (invoice.status.toLowerCase() === "paid") {
               paidInvoices += 1;
             } else {
               pendingInvoices += 1;
             }
             let date = new Date(invoice.date);
-            invoice.date= date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
-            List.push(
-              {
-                title: invoice.title,
-                amount: "Rs. "+invoice.amount,
-                status: invoice.status,
-                date: invoice.date,
-              }
-            );
+            invoice.date = date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+            List.push({
+              title: invoice.title,
+              amount: "Rs. " + invoice.amount,
+              status: invoice.status,
+              date: invoice.date,
+            });
           });
           setInvoiceList(List);
           setTotalInvoices(invoices.length);
@@ -46,45 +44,43 @@ function Invoices() {
           setPendingInvoices(pendingInvoices);
         }
       });
-  }, [invoiceList.length, totalInvoices, pendingInvoices, paidInvoices]);
+  }, []);
 
   return (
-    <div className="w-full h-screen flex flex-col gap-5 items-center justify-center max-h-screen overflow-y-auto pl-44">
-      <h1 className="text-white font-bold text-5xl">Invoices</h1>
-      <p className="text-white text-xl text-center px-5 sm:p-0">
-        All the invoices like Mess bills, Hostel fee will be shown here
+    <div className="w-full min-h-screen bg-[#f3e8ff] flex flex-col gap-8 items-center py-10 px-4 overflow-y-auto">
+      {/* Heading */}
+      <h1 className="text-5xl font-bold text-[#4f46e5]">Invoices</h1>
+      <p className="text-lg text-center text-black max-w-xl">
+        All your invoices like Mess Bills, Hostel Fees will be shown here.
       </p>
-      <div className="flex gap-10 items-center my-5">
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 ml-2 text-5xl font-extrabold text-blue-700">{totalInvoices}</dt>
-          <dd className="text-gray-400 text-center">Total Invoices</dd>
+
+      {/* Statistics Cards */}
+      <div className="flex flex-wrap gap-8 justify-center mt-6">
+        <div className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-2xl w-48">
+          <dt className="mb-2 text-5xl font-extrabold text-[#4f46e5]">{totalInvoices}</dt>
+          <dd className="text-gray-500 text-center">Total Invoices</dd>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-5xl font-extrabold text-blue-700">{paidInvoices}</dt>
-          <dd className="text-gray-400 ">
-            Paid Invoices
-          </dd>
+        <div className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-2xl w-48">
+          <dt className="mb-2 text-5xl font-extrabold text-[#4f46e5]">{paidInvoices}</dt>
+          <dd className="text-gray-500 text-center">Paid Invoices</dd>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <dt className="mb-2 text-5xl font-extrabold text-blue-700">{pendingInvoices}</dt>
-          <dd className="text-gray-400">
-            Pending Invoices
-          </dd>
+        <div className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-2xl w-48">
+          <dt className="mb-2 text-5xl font-extrabold text-[#4f46e5]">{pendingInvoices}</dt>
+          <dd className="text-gray-500 text-center">Pending Invoices</dd>
         </div>
       </div>
 
-      <div className="w-full max-w-md p-4 border rounded-lg shadow sm:p-8 bg-neutral-950 border-neutral-900 drop-shadow-xl overflow-y-auto max-h-70">
+      {/* Latest Invoices */}
+      <div className="w-full max-w-2xl bg-white p-6 rounded-2xl shadow-2xl overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
-          <h5 className="text-xl font-bold leading-none text-white">
-            Latest Invoices
-          </h5>
+          <h5 className="text-2xl font-bold text-[#4f46e5]">Latest Invoices</h5>
         </div>
         <div className="flow-root">
-          <ul role="list" className="divide-y divide-gray-700">
-            {invoiceList.map((invoice) => (
-              <li className="py-3 sm:py-4" key="1">
+          <ul role="list" className="divide-y divide-gray-300">
+            {invoiceList.map((invoice, index) => (
+              <li className="py-4" key={index}>
                 <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0 text-white">
+                  <div className="flex-shrink-0 text-[#4f46e5]">
                     {invoice.status.toLowerCase() === "pending" ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -118,14 +114,14 @@ function Invoices() {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate text-white">
+                    <p className="text-base font-medium text-black truncate">
                       {invoice.title}
                     </p>
-                    <p className="text-sm truncate text-gray-400">
+                    <p className="text-sm text-gray-500 truncate">
                       {invoice.date}
                     </p>
                   </div>
-                  <div className="flex flex-col items-center text-base font-semibold text-white">
+                  <div className="flex flex-col items-center text-base font-semibold text-black">
                     {invoice.amount}
                   </div>
                 </div>
