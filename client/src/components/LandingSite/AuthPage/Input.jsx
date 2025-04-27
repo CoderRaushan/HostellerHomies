@@ -29,7 +29,7 @@ function Input({ field }) {
         type={type}
         name={name}
         id={name}
-        className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-200 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500 outline-none cursor-pointer"
+        className="border sm:text-sm rounded-lg block w-full p-2.5 bg-white-200 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500 outline-none cursor-pointer"
         placeholder={placeholder}
         required={required}
         value={value}
