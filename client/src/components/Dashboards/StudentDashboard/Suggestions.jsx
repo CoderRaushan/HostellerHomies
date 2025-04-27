@@ -73,13 +73,13 @@ function Suggestions() {
           <textarea
             name="suggestion"
             placeholder="Suggestions..."
-            className="border sm:text-sm rounded-lg block w-full p-3 bg-white-800 border-[#4f46e] placeholder-gray-400 text-white focus:ring-[#4f46e] focus:border-[#4f46e] outline-none"
+            className="border sm:text-sm rounded-lg block w-full p-3 bg-white-800 border-[#4f46e] placeholder-gray-400 text-black focus:ring-[#4f46e] focus:border-[#4f46e] outline-none"
             onChange={descChange}
             value={desc}
           ></textarea>
           <button
             type="submit"
-            className="w-full text-white bg-[#4f46e5] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-[#4f46e] text-lg rounded-lg px-5 py-2.5 mt-5 text-center"
+            className="w-full text-black bg-[#4f46e5] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-[#4f46e] text-lg rounded-lg px-5 py-2.5 mt-5 text-center"
           >
             Make Suggestion
           </button>
