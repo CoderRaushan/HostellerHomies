@@ -225,7 +225,7 @@ export default function Index() {
     <div className="flex">
       <Sidebar links={links} />
       <Topbar name={admin?.name} notifications={notifications} />
-      <div className="w-full bg-stone-900 h-screen">
+      <div className="w-full bg-[#f3e8ff] h-screen">
         <Outlet />
       </div>
     </div>
