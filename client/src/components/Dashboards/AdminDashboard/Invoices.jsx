@@ -6,14 +6,14 @@ import LoadingBar from "react-top-loading-bar";
 function Invoices() {
   const genInvoices = async () => {
     setProgress(30);
-    let hostel = JSON.parse(localStorage.getItem("hostel"));
+    let hostels = JSON.parse(localStorage.getItem("admin"));
     try {
       const res = await fetch("http://localhost:3000/api/invoice/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ hostel: hostel._id }),
+        body: JSON.stringify({ hostel: hostels.hostel }),
       });
       setProgress(60);
       const data = await res.json();
@@ -55,14 +55,14 @@ function Invoices() {
 
   const getInvoices = async () => {
     setProgress(30);
-    let hostel = JSON.parse(localStorage.getItem("hostel"));
+    let hostels = JSON.parse(localStorage.getItem("admin"));
     try {
       const res = await fetch("http://localhost:3000/api/invoice/getbyid", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ hostel: hostel._id }),
+        body: JSON.stringify({ hostel: hostels.hostel }),
       });
       setProgress(60);
       const data = await res.json();

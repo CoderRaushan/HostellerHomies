@@ -30,14 +30,16 @@ function Topbar({ name, notifications = [], fullWidth = true }) {
       className={`py-5 px-5 flex items-center justify-between bg-white text-black w-full shadow-lg absolute top-0
         ${fullWidth ? "" : "md:w-[calc(100%-256px)] md:ml-[256px]"}`}
     >
-      <span className="hidden md:block ml-[250px]">{date.toLocaleTimeString()}</span>
+      <span className="hidden md:block ml-[250px]">
+        {date.toLocaleTimeString()}
+      </span>
 
       <span className="font-semibold text-indigo-600">{name}</span>
 
       <div className="flex gap-3">
         {/* Settings */}
         <Link to="settings">
-        <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -61,7 +63,7 @@ function Topbar({ name, notifications = [], fullWidth = true }) {
 
         {/* Notifications */}
         <div className="relative group cursor-pointer">
-        <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -75,8 +77,7 @@ function Topbar({ name, notifications = [], fullWidth = true }) {
               d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
             />
           </svg>
-
-          <div className="absolute bg-white text-black -bottom-16 right-2 p-5 w-96 hidden group-hover:flex flex-col rounded-xl shadow-md z-10">
+          <div className="absolute bg-white text-black top-10 right-10 p-5 w-96 hidden group-hover:flex flex-col rounded-xl shadow-md z-10">
             <ul>
               {notifications.length > 0 ? (
                 notifications.map((noti, index) => (
@@ -84,11 +85,14 @@ function Topbar({ name, notifications = [], fullWidth = true }) {
                     key={index}
                     className="py-4 px-3 flex justify-between items-center border-b hover:bg-neutral-100 rounded transition"
                   >
-                    New account request from <span className="text-indigo-600">{noti}</span>
+                    New account request from{" "}
+                    <span className="text-indigo-600">{noti}</span>
                   </li>
                 ))
               ) : (
-                <li className="py-2 text-center text-gray-400">No new notifications</li>
+                <li className="py-2 text-center text-gray-400">
+                  No new notifications
+                </li>
               )}
             </ul>
           </div>
@@ -96,7 +100,7 @@ function Topbar({ name, notifications = [], fullWidth = true }) {
 
         {/* Profile & Logout */}
         <div className="relative group cursor-pointer">
-        <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -111,7 +115,7 @@ function Topbar({ name, notifications = [], fullWidth = true }) {
             />
           </svg>
 
-          <div className="absolute bg-white text-black -bottom-24 right-2 hidden group-hover:flex flex-col rounded shadow-md z-10">
+          <div className="absolute bg-white text-black top-6 right-0 ml-6 hidden group-hover:flex flex-col rounded shadow-md z-10">
             <Link to="settings" className="py-2 px-6 hover:bg-neutral-200">
               Settings
             </Link>

@@ -21,13 +21,13 @@ function List({ list, title, icon, addClasses }) {
           ) : (
             list.map((item) => (
               <li
-                className="group py-3 pl-3 rounded sm:py-4 hover:bg-neutral-700 hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
+                className="group py-3 pl-3 rounded sm:py-4 hover:bg-gray-200 hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
                 key={item.id}
               >
                 <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0 text-white">{icon}</div>
+                  <div className="flex-shrink-0 text-black">{icon}</div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate text-white">
+                    <p className="text-sm font-medium truncate text-black">
                       {item.title}
                     </p>
                     <p className="text-sm truncate text-gray-400">

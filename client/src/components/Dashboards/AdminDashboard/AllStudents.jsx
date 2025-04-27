@@ -5,13 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 function AllStudents() {
   const getCSV = async () => {
-    const hostel = JSON.parse(localStorage.getItem('hostel'))._id;
+    const hostels = JSON.parse(localStorage.getItem('admin'));
     const res = await fetch("http://localhost:3000/api/student/csv", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ hostel }),
+      body: JSON.stringify({ hostel: hostels.hostel }),
     });
     const data = await res.json();
     if (data.success) {

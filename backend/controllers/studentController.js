@@ -84,15 +84,15 @@ const registerStudent = async (req, res) => {
 
 const getStudent = async (req, res) => {
     try {
-        console.log("comming to get student data");
+        // console.log("comming to get student data");
         let success = false;
         // const errors = validationResult(req);
         // if (!errors.isEmpty()) {
         //     return res.status(400).json({success, errors: errors.array() });
         // }
-        console.log("req body", req.body);
+        // console.log("req body", req.body);
         const { isAdmin } = req.body;
-        console.log("is admin", isAdmin);
+        // console.log("is admin", isAdmin);
         if (isAdmin) 
         {
             // return res.status(400).json({success, errors:  'Admin cannot access this route' });
@@ -102,7 +102,6 @@ const getStudent = async (req, res) => {
         // console.log("decoded data", decoded);
         const admin = await Admin.findOne({ user: decoded.userId }).select('-password');
         // console.log("admin data", admin);
-        
         success = true;
         res.json({ success,student:admin,isAdmin:true });
         }

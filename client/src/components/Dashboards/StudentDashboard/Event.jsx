@@ -18,6 +18,7 @@ const Event = () => {
   });
 
   const [eventList, setEventList] = useState([]);
+
   const fetchEvents = async () => {
     try {
       const res = await axios.post('http://localhost:3000/api/Event/EventFund/student/get', {
@@ -61,9 +62,9 @@ const Event = () => {
         toast.success("Event Fund submitted Successfully!", {
           position: "top-right",
           autoClose: 3000,
-          theme: "dark",
+          theme: "colored",
         });
-        fetchEvents(); 
+        fetchEvents();
       } else {
         toast.error(response.data.errors || "Something went wrong!", {
           position: "top-right",
@@ -81,28 +82,28 @@ const Event = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen p-6 bg-gray-900 mt-12" style={{ marginLeft: '250px' }}>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[#f3e8ff] p-24 w-500">
       <ToastContainer />
-      <div className="w-1/3 p-6 rounded-lg border border-gray-700 mb-10" style={{ backgroundColor: '#111828' }}>
-        <h2 className="text-xl font-bold text-center text-white mb-4">Event Fund Request</h2>
+      <div className="w-full max-w-4xl p-6 rounded-lg border border-gray-300 bg-white mb-10 shadow-lg">
+        <h2 className="text-3xl font-bold text-[#4f46e5] text-center mb-4">Event Fund Request</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-300 font-semibold mb-1">Name</label>
+            <label className="block text-black font-semibold mb-1">Name</label>
             <input
               type="text"
               name="name"
-              className="w-full px-3 py-2 border border-gray-600 bg-transparent text-white rounded-md"
+              className="w-full px-3 py-2 border border-gray-400 bg-transparent text-black rounded-md"
               value={formData.name}
               onChange={handleChange}
               required
             />
           </div>
           <div>
-            <label className="block text-gray-300 font-semibold mb-1">URN</label>
+            <label className="block text-black font-semibold mb-1">URN</label>
             <input
               type="text"
               name="urn"
-              className="w-full px-3 py-2 border border-gray-600 bg-transparent text-white rounded-md"
+              className="w-full px-3 py-2 border border-gray-400 bg-transparent text-black rounded-md"
               value={formData.urn}
               onChange={handleChange}
               required
@@ -110,22 +111,22 @@ const Event = () => {
           </div>
           <div className="flex gap-2">
             <div className="w-1/2">
-              <label className="block text-gray-300 font-semibold mb-1">Room No.</label>
+              <label className="block text-black font-semibold mb-1">Room No.</label>
               <input
                 type="text"
                 name="roomNumber"
-                className="w-full px-3 py-2 border border-gray-600 bg-transparent text-white rounded-md"
+                className="w-full px-3 py-2 border border-gray-400 bg-transparent text-black rounded-md"
                 value={formData.roomNumber}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="w-1/2">
-              <label className="block text-gray-300 font-semibold mb-1">Hostel No.</label>
+              <label className="block text-black font-semibold mb-1">Hostel No.</label>
               <input
                 type="text"
                 name="hostelNumber"
-                className="w-full px-3 py-2 border border-gray-600 bg-transparent text-white rounded-md"
+                className="w-full px-3 py-2 border border-gray-400 bg-transparent text-black rounded-md"
                 value={formData.hostelNumber}
                 onChange={handleChange}
                 required
@@ -133,22 +134,22 @@ const Event = () => {
             </div>
           </div>
           <div>
-            <label className="block text-gray-300 font-semibold mb-1">Event Details</label>
+            <label className="block text-black font-semibold mb-1">Event Details</label>
             <textarea
               name="eventDetails"
               rows="3"
-              className="w-full px-3 py-2 border border-gray-600 bg-transparent text-white rounded-md"
+              className="w-full px-3 py-2 border border-gray-400 bg-transparent text-black rounded-md"
               value={formData.eventDetails}
               onChange={handleChange}
               required
             ></textarea>
           </div>
           <div>
-            <label className="block text-gray-300 font-semibold mb-1">Fund Required (₹)</label>
+            <label className="block text-black font-semibold mb-1">Fund Required (₹)</label>
             <input
               type="number"
               name="fundRequired"
-              className="w-full px-3 py-2 border border-gray-600 bg-transparent text-white rounded-md"
+              className="w-full px-3 py-2 border border-gray-400 bg-transparent text-black rounded-md"
               value={formData.fundRequired}
               onChange={handleChange}
               required
@@ -157,7 +158,7 @@ const Event = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md"
+              className="bg-[#4f46e5] hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md"
             >
               Submit
             </button>
@@ -166,8 +167,8 @@ const Event = () => {
       </div>
 
       {/* Display Event Status */}
-      <div className="w-2/3 text-white">
-        <h2 className="text-xl font-bold mb-4">Your Event Fund Requests</h2>
+      <div className="w-full max-w-4xl text-black">
+        <h2 className="text-xl font-bold mb-4 text-[#4f46e5]">Your Event Fund Requests</h2>
         {eventList.length > 0 ? (
           eventList.map((event) => (
             <EventStatus key={event._id} currentStatus={event} />

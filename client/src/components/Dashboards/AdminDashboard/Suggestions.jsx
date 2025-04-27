@@ -6,13 +6,13 @@ import { Loader } from "../../Dashboards/Common/Loader";
 
 function Suggestions() {
   const getSuggestions = async () => {
-    const hostel = JSON.parse(localStorage.getItem("hostel"));
+    const hostels = JSON.parse(localStorage.getItem("admin"));
     const response = await fetch("http://localhost:3000/api/suggestion/hostel", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ hostel: hostel._id }),
+      body: JSON.stringify({ hostel: hostels.hostel }),
     });
 
     const data = await response.json();

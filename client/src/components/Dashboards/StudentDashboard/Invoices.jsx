@@ -47,7 +47,7 @@ function Invoices() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#f3e8ff] flex flex-col gap-8 items-center py-10 px-4 overflow-y-auto">
+    <div className="w-full min-h-screen bg-[#f3e8ff] flex flex-col gap-8 items-center py-10 px-4 overflow-y-auto mt-12">
       {/* Heading */}
       <h1 className="text-5xl font-bold text-[#4f46e5]">Invoices</h1>
       <p className="text-lg text-center text-black max-w-xl">
