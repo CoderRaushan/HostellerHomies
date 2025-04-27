@@ -1,0 +1,1 @@
+//initialized index js file
