@@ -19,7 +19,7 @@ function Navbar() {
         <Link to="/notices" className="hover:text-[#3b82f5] transition">NoticeBoard</Link>
         <Link
           to="/auth/login"
-          className="bg-[#4f46e5] hover:bg-blue-600 text-white px-6 py-2 rounded-md font-bold transition"
+          className="bg-[#4f46e5]  text-white px-6 py-2 rounded-md font-bold hover:scale-95 transition-all duration-200"
         >
           Login
         </Link>
@@ -75,7 +75,7 @@ function Navbar() {
         <Link
           to="/auth/login"
           onClick={() => setMenuOpen(false)}
-          className="bg-[#3b82f5] hover:bg-blue-600 text-white px-6 py-2 rounded-md font-bold transition"
+          className=" bg-[#3b82f5] text-white px-6 py-2 rounded-md font-bold  "
         >
           Login
         </Link>

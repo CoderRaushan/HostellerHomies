@@ -304,7 +304,7 @@ function Contact() {
                   <button
                     type="submit"
                     disabled={isSending || isSent}
-                    className={`w-full py-3 px-6 rounded-lg text-white font-medium transition-all ${
+                    className={`w-full py-3 px-6 rounded-lg text-white font-medium hover:scale-95 duration-200 transition-all ${
                       isSending || isSent 
                         ? 'bg-gray-400 cursor-not-allowed' 
                         : 'bg-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-xl'
