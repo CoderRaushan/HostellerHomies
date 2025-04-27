@@ -11,7 +11,7 @@ TeamCard.propTypes = {
 
 function TeamCard({ member }) {
   return (
-    <div className="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden border-l-4 border-[#4f46e5] shadow-md hover:shadow-lg transition-all duration-300 max-w-xl w-full">
+    <div className="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden border-l-4 border-[#4f46e5] shadow-md hover:shadow-lg transition-all duration-300 max-w-xl mb-5  w-11/12">
       <div className="bg-gradient-to-br from-[#4f46e5] to-emerald-600 flex items-center justify-center p-5">
         <div className="w-36 h-36 md:w-40 md:h-40 rounded-full border-4 border-white shadow-md overflow-hidden">
           <img

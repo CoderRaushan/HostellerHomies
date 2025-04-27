@@ -4,14 +4,14 @@ import Logo from "/src/assets/logo.png";
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <nav className="flex justify-between items-center p-5 md:px-10 bg-white text-black fixed w-full top-0 left-0 z-50 shadow-md">
+    <nav className="flex  justify-between items-center p-5 md:px-10 bg-white text-black fixed w-full top-0 left-0 z-50 shadow-md lg:mb-10">
       {/* Logo */}
       <Link to="/" className="flex items-center space-x-2 font-extrabold text-2xl lg:text-4xl">
         {/* <span>HMS</span> */}
         <img src={Logo} height="200px" width="200px"/>
       </Link>
       {/* Desktop Menu */}
-      <div className="hidden md:flex space-x-10 font-semibold">
+      <div className="hidden  md:flex space-x-10 font-semibold">
         <Link to="/about" className="hover:text-[#3b82f5] transition">About</Link>
         <Link to="/contact" className="hover:text-[#3b82f5] transition">Contact</Link>
         <Link to="/auth/request" className="hover:text-[#3b82f5] transition">Request</Link>
@@ -19,7 +19,7 @@ function Navbar() {
         <Link to="/notices" className="hover:text-[#3b82f5] transition">NoticeBoard</Link>
         <Link
           to="/auth/login"
-          className="bg-[#4f46e5] hover:bg-blue-600 text-white px-6 py-2 rounded-md font-bold transition"
+          className="bg-[#4f46e5]  text-white px-6 py-2 rounded-md font-bold hover:scale-95 transition-all duration-200"
         >
           Login
         </Link>
@@ -75,7 +75,7 @@ function Navbar() {
         <Link
           to="/auth/login"
           onClick={() => setMenuOpen(false)}
-          className="bg-[#3b82f5] hover:bg-blue-600 text-white px-6 py-2 rounded-md font-bold transition"
+          className=" bg-[#3b82f5] text-white px-6 py-2 rounded-md font-bold  "
         >
           Login
         </Link>

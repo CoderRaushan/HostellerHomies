@@ -95,7 +95,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen w-11/12 mx-auto flex items-center justify-center  px-4 py-12">
+    <div className="min-h-screen w-11/12 mx-auto flex items-center justify-center lg:mt-60   px-4 py-12">
       <div className="w-full max-w-md relative">
         {/* Background decorative elements */}
         <div className="absolute -top-10 -left-10 w-20 h-20 bg-[#4f46e5] rounded-full opacity-10"></div>

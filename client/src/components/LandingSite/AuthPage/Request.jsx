@@ -66,7 +66,7 @@ export default function RequestAcc() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center lg:mt-44  px-4 py-12">
       <div className="w-full max-w-md relative">
         {/* Background decorative elements */}
         <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#4f46e5] rounded-full opacity-10"></div>
