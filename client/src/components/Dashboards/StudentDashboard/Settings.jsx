@@ -6,7 +6,7 @@ const Input = ({ field }) => {
     <div className="mb-2">
       <label 
         htmlFor={field.name} 
-        className="block mb-2 text-sm font-medium text-gray-300"
+        className="block mb-2 text-sm font-bold text-black "
       >
         {field.name}
       </label>
@@ -17,7 +17,7 @@ const Input = ({ field }) => {
         required={field.req}
         onChange={field.onChange}
         value={field.value}
-        className="border text-sm rounded-lg block w-full p-2.5 bg-white border-gray-300 text-gray-800 focus:ring-indigo-500 focus:border-indigo-500"
+        className="border text-sm rounded-lg block w-full p-2.5 bg-white border-gray-300 text-black focus:ring-indigo-500 focus:border-indigo-500"
       />
     </div>
   );
@@ -81,7 +81,7 @@ export default function Settings() {
           
           <button
             type="submit"
-            className="w-full text-white font-medium rounded-lg text-sm px-5 py-3 mt-2 text-center focus:ring-4 focus:outline-none focus:ring-indigo-300"
+            className="hover:scale-95 transition-all duration-200 w-full text-white font-medium rounded-lg text-sm px-5 py-3 mt-2 text-center focus:ring-4 focus:outline-none focus:ring-indigo-300"
             style={{ backgroundColor: "#4f46e5" }}
           >
             Change Password

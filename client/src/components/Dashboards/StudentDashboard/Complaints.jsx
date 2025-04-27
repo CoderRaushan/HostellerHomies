@@ -159,7 +159,7 @@ function Complaints() {
   };
 
   return (
-    <div style={{ backgroundColor: "#fff" }} className="min-h-screen w-full p-6 flex flex-col items-center justify-start">
+    <div style={{ backgroundColor: "#fff" }} className="min-h-screen w-full p-6 mt-10 flex flex-col items-center justify-start">
       <h1 className="font-bold text-4xl mt-6 mb-8" style={{ color: "#4f46e5" }}>Complaints</h1>
       
       <div className="flex gap-8 flex-wrap items-start justify-center max-w-5xl">
@@ -214,7 +214,7 @@ function Complaints() {
             
             <button
               type="submit"
-              className="w-full text-white rounded-lg px-5 py-2.5 mt-5 text-center focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium"
+              className="w-full hover:scale-95 transition-all duration-200 text-white rounded-lg px-5 py-2.5 mt-5 text-center focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium"
               disabled={loading}
               style={{ backgroundColor: "#4f46e5" }}
             >
