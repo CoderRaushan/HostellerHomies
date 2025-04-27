@@ -1,17 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const InvoiceSchema = new Schema({
+const ComplaintSchema = new Schema({
     student:{
         type:Schema.Types.ObjectId,
         ref:'student'
     },
+    hostel:{
+        type:Schema.Types.ObjectId,
+        ref:'hostel'
+    },
+    type:{
+        type:String,
+        required:true
+    },
     title:{
         type:String,
-        default:'Mess Fee'
+        required:true
     },
-    amount:{
-        type:Number,
+    description:{
+        type:String,
         required:true
     },
     status:{
@@ -24,4 +32,4 @@ const InvoiceSchema = new Schema({
     }
 })
 
-module.exports = Invoice = mongoose.model('invoice',InvoiceSchema);
+module.exports = Complaint = mongoose.model('complaint',ComplaintSchema);
