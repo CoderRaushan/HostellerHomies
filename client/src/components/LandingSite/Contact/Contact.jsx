@@ -150,7 +150,7 @@ function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100 py-12">
+    <section className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100 py-12 ">
       <div className="max-w-4xl mx-auto px-6 mt-24">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
           <div className="md:flex">
@@ -266,7 +266,7 @@ function Contact() {
                     name="email"
                     value={email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors "
                     placeholder="you@example.com"
                     required
                   />

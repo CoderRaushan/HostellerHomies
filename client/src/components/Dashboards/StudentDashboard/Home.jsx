@@ -16,6 +16,7 @@ const List = () => {
       status: "pending",
     },
   ]);
+
   useEffect(() => {
     let student = JSON.parse(localStorage.getItem("student"));
     fetch("http://localhost:3000/api/invoice/student", {
@@ -52,18 +53,18 @@ const List = () => {
   }, [invoiceList.length]);
 
   return (
-    <div className="w-full max-w-md p-4 rounded-lg shadow sm:p-8 bg-neutral-950 drop-shadow-xl overflow-y-auto max-h-70 pl-32">
+    <div className="w-full max-w-md p-6 rounded-2xl shadow-lg bg-white overflow-y-auto max-h-96">
       <div className="flex items-center justify-between mb-4">
-        <h5 className="text-xl font-bold leading-none text-white">
+        <h5 className="text-2xl font-bold text-gray-800">
           Unpaid Invoices
         </h5>
       </div>
       <div className="flow-root">
-        <ul role="list" className="divide-y divide-gray-700">
-          {invoiceList.map((invoice) => (
-            <li className="py-3 sm:py-4" key="1">
+        <ul role="list" className="divide-y divide-gray-300">
+          {invoiceList.map((invoice, index) => (
+            <li className="py-4" key={index}>
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0 text-white">
+                <div className="flex-shrink-0 text-gray-700">
                   {invoice.status.toLowerCase() === "pending" ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +72,7 @@ const List = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={2}
                       stroke="currentColor"
-                      className="w-8 h-8"
+                      className="w-8 h-8 text-yellow-500"
                     >
                       <path
                         strokeLinecap="round"
@@ -86,7 +87,7 @@ const List = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={2}
                       stroke="currentColor"
-                      className="w-8 h-8"
+                      className="w-8 h-8 text-green-500"
                     >
                       <path
                         strokeLinecap="round"
@@ -97,14 +98,14 @@ const List = () => {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate text-white">
+                  <p className="text-lg font-semibold text-gray-900 truncate">
                     {invoice.title}
                   </p>
-                  <p className="text-sm truncate text-gray-400">
+                  <p className="text-sm text-gray-500 truncate">
                     {invoice.date}
                   </p>
                 </div>
-                <div className="flex flex-col items-center text-base font-semibold text-white">
+                <div className="flex flex-col items-center text-base font-semibold text-gray-900">
                   {invoice.amount}
                 </div>
               </div>
@@ -137,8 +138,6 @@ function Home() {
         }
       });
       setDaysOff(daysOff);
-    } else {
-      // console.log("Error");
     }
   };
 
@@ -149,17 +148,17 @@ function Home() {
   const labels = ["Days off", "Days present"];
   let totalDays = new Date();
   totalDays = totalDays.getDate();
-  const [daysOff, setDaysOff] = useState(0); //!Fetch from database
+  const [daysOff, setDaysOff] = useState(0);
 
   return (
-    <div className="w-full h-screen flex items-center justify-center flex-col gap-5 max-h-screen overflow-y-auto pt-64 lg:pt-0 md:pt-64 sm:pt-96 ">
-      <h1 className="text-white font-bold text-5xl text-center">
-        Welcome <span className="text-blue-500">{student.name}!</span>
+    <div className="w-full min-h-screen bg-white flex items-center justify-center flex-col gap-8 py-20 px-5 overflow-y-auto">
+      <h1 className="text-gray-800 font-bold text-5xl text-center">
+        Welcome <span className="text-blue-600">{student.name}!</span>
       </h1>
-      <div className="flex gap-5 w-full justify-center flex-wrap">
+      <div className="flex gap-10 w-full justify-center flex-wrap">
         <List />
-        <div className="flex flex-col items-center bg-neutral-950 rounded-xl shadow-xl p-5">
-          <span className="text-white text-xl">Attendance</span>
+        <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-8 w-80">
+          <span className="text-gray-800 text-2xl font-semibold mb-4">Attendance</span>
           <Doughnut
             datasetIdKey="id"
             data={{
@@ -168,12 +167,23 @@ function Home() {
                 {
                   label: "days",
                   data: [daysOff, totalDays - daysOff],
-                  backgroundColor: ["#F26916", "#1D4ED8"],
-                  barThickness: 50,
-                  borderColor: "rgba(0,0,0,0)",
-                  hoverOffset: 10,
+                  backgroundColor: ["#facc15", "#3b82f6"], // Yellow and Blue
+                  borderColor: "transparent",
+                  hoverOffset: 12,
                 },
               ],
+            }}
+            options={{
+              plugins: {
+                legend: {
+                  labels: {
+                    color: "gray",
+                    font: {
+                      size: 14,
+                    },
+                  },
+                },
+              },
             }}
           />
         </div>

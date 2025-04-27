@@ -125,7 +125,7 @@ export default function AdminSignIn() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-100 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4  py-12">
       <div className="w-full max-w-md relative">
         {/* Background decorative elements */}
         <div className="absolute -top-10 -left-10 w-24 h-24 bg-[#4f46e5] rounded-full opacity-10"></div>
