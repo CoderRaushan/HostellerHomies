@@ -17,7 +17,7 @@ function HeroSection() {
   return (
     <main className="min-h-screen bg-black">
       {/* Swiper Slider - Smaller Height with Responsive Adjustment */}
-      <div className="w-full h-[60vh] sm:h-[70vh] lg:h-[80vh] mt-[3.5rem]">
+      <div className="w-full h-[60vh] sm:h-[70vh] lg:h-[80vh] mt-[3.4rem]">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
