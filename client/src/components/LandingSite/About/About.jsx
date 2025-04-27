@@ -50,20 +50,20 @@
 // export { About };
 
 import { TeamCard } from "./TeamMember";
-
+import Raushan from "/src/assets/RaushanImage.jpg";
+import Utkarsh from "/src/assets/utkarsh.png";
+import Ankush from "/src/assets/ankush.jpg";
 function About() {
   const utkarsh = {
     name: "Utkarsh",
     designation: "Team Leader",
-    image:
-      "https://media.licdn.com/dms/image/v2/D5603AQH3JysLAdubNA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709310461829?e=1751500800&v=beta&t=bVvT80e96_HU_N-qcdFmUzzA5iKDoB39_aFn2qYs724",
+    image:Utkarsh,
     linkedin: "https://www.linkedin.com/in/utkarsh-kumar-a3806b2b8/",
   };
   const raushan = {
     name: "Raushan",
     designation: "Backend Developer",
-    image:
-      "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",
+    image:Raushan,
     linkedin: "https://www.linkedin.com/in/raushan-kumar-964a75255/",
   };
   const jay = {
@@ -76,8 +76,7 @@ function About() {
   const ankush = {
     name: "Ankush",
     designation: "Database Manager",
-    image:
-      "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",
+    image:Ankush,
     linkedin: "https://www.linkedin.com/in/ankushsingh374/",
   };
 

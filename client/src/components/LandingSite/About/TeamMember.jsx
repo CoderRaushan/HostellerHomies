@@ -1,38 +1,3 @@
-// // import PropTypes from "prop-types";
-
-// // TeamCard.propTypes = {
-// //   member: PropTypes.shape({
-// //     name: PropTypes.string.isRequired,
-// //     image: PropTypes.string.isRequired,
-// //     designation: PropTypes.string.isRequired,
-// //   }).isRequired,
-// // };
-
-// // function TeamCard({ member }) {
-// //   return (
-// //     <div className="rounded-lg shadow-lg p-5 bg-gray-800">
-// //       <div className="relative overflow-hidden rounded-full w-40 h-40 mx-auto mb-4">
-// //         <img
-// //           className="absolute inset-0 w-full h-full object-cover object-center rounded-full"
-// //           src={member.image}
-// //           alt={member.name}
-// //         />
-// //       </div>
-// //       <div className="text-center">
-// //         <h3 className="text-xl font-medium text-white mb-2">{member.name}</h3>
-// //         <div className="text-gray-400 text-sm mb-4">{member.designation}</div>
-// //         <a className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded cursor-pointer">
-// //           View Profile
-// //         </a>
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
-// // export { TeamCard };
-
-
-
 import PropTypes from "prop-types";
 
 TeamCard.propTypes = {
@@ -63,7 +28,7 @@ function TeamCard({ member }) {
           {member.designation}
         </p>
         <p className="text-sm text-gray-600 mt-2">
-          Team member with expertise in their field and a passion for
+          Team member with expertise of over 3 years in their field and a passion for
           collaboration.
         </p>
 
@@ -90,6 +55,7 @@ function TeamCard({ member }) {
 
           <div className="flex space-x-2">
             <button className="p-2 text-gray-600 hover:text-[#4f46e5] transition-colors">
+            <a href="mailto:raushankumar23082004@gmail.com">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -104,6 +70,7 @@ function TeamCard({ member }) {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
+              </a>
             </button>
             <button className="p-2 text-gray-600 hover:text-[#4f46e5] transition-colors">
               <svg
