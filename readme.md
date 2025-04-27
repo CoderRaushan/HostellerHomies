@@ -79,7 +79,7 @@ We love contributions! Here’s how you can get involved:
 ## 🌟 Authors
 
 - **Raushan**: [GitHub Profile](https://github.com/CoderRaushan)
-- **Jay**: [GitHub Profile](https://github.com/your-github)
-- **Ankush**: [GitHub Profile](https://github.com/ankush-github)
+- **Jay**: [GitHub Profile](https://github.com/jayjaisswal)
+- **Ankush**: [GitHub Profile](https://github.com/ankushkumar2122)
 - **Utkarsh**: [GitHub Profile](https://github.com/utkarsh-github)
 
