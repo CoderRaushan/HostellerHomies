@@ -99,7 +99,7 @@ export default function SignIn() {
       <div className="w-full max-w-md relative">
         {/* Background decorative elements */}
         <div className="absolute -top-10 -left-10 w-20 h-20 bg-[#4f46e5] rounded-full opacity-10"></div>
-        <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-indigo-600 rounded-full opacity-10"></div>
+        <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white-600 rounded-full opacity-10"></div>
         <div className="absolute top-1/4 right-0 w-16 h-16 bg-purple-500 rounded-full opacity-10 transform translate-x-1/2"></div>
         
         {/* Main card */}
