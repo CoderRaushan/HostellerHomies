@@ -57,13 +57,13 @@ function About() {
   const utkarsh = {
     name: "Utkarsh",
     designation: "Team Leader",
-    image:Utkarsh,
+    image: Utkarsh,
     linkedin: "https://www.linkedin.com/in/utkarsh-kumar-a3806b2b8/",
   };
   const raushan = {
     name: "Raushan",
     designation: "Backend Developer",
-    image:Raushan,
+    image: Raushan,
     linkedin: "https://www.linkedin.com/in/raushan-kumar-964a75255/",
   };
   const jay = {
@@ -76,27 +76,16 @@ function About() {
   const ankush = {
     name: "Ankush",
     designation: "Database Manager",
-    image:Ankush,
+    image: Ankush,
     linkedin: "https://www.linkedin.com/in/ankushsingh374/",
   };
 
   return (
-    // <>
-    //   <h1 className="font-bold text-white text-center text-5xl">
-    //     Meet Our Team!
-    //   </h1>
-    //   <div className="py-20 sm:py-25 flex gap-10 flex-wrap justify-center items-center">
-    //     <TeamCard member={utkarsh} />
-    //     <TeamCard member={raushan} />
-    //     <TeamCard member={jay} />
-    //     <TeamCard member={ankush} />
-    //   </div>
-    // </>
-    <div style={{ backgroundColor: "#f3e8ff" }}>
-      <h1 className="font-bold text-black text-center text-5xl">
+    <div style={{ backgroundColor: "#f3e8ff" }} className="min-h-screen">
+      <h1 className="font-bold text-black text-center text-5xl py-28">
         Meet Our Team!
       </h1>
-      <div className="py-20 sm:py-25 flex gap-10 flex-wrap justify-center items-center">
+      <div className="py-2 sm:py-2 flex gap-10 flex-wrap justify-center items-center">
         <TeamCard member={utkarsh} />
         <TeamCard member={raushan} />
         <TeamCard member={jay} />
