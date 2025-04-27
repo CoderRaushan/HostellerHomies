@@ -182,7 +182,7 @@ function Mess() {
             </li>
           </ul>
         </div>
-        <div className="w-full sm:w-90 max-w-md max-h-90 p-4 border rounded-lg shadow sm:p-8 bg-white border-neutral-900 drop-shadow-xl overflow-y-auto">
+        <div className="w-full sm:w-90 max-w-md max-h-[300px] p-4 border rounded-lg shadow sm:p-8 bg-white border-neutral-900 drop-shadow-xl overflow-y-auto">
           <div className="flex items-center justify-between mb-4 ">
             <h5 className="text-xl font-bold leading-none text-[#4f46e]">
               All Requests

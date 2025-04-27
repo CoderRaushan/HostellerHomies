@@ -28,7 +28,7 @@ function Topbar({ name, notifications = [], fullWidth = true }) {
   return (
     <div
       className={`py-5 px-5 flex items-center justify-between bg-white text-black w-full shadow-lg absolute top-0
-        ${fullWidth ? "" : "md:w-[calc(100%-256px)] md:ml-[256px]"}`}
+        ${fullWidth ? "" : "md:w-[calc(100%-256px)] md:ml-[256px]"} ` } 
     >
       <span className="hidden md:block ml-[250px]">
         {date.toLocaleTimeString()}
