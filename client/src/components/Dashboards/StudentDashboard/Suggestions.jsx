@@ -79,7 +79,7 @@ function Suggestions() {
           ></textarea>
           <button
             type="submit"
-            className="w-full text-white bg-[#4f46e5] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-[#4f46e] text-lg rounded-lg px-5 py-2.5 mt-5 text-center"
+            className="w-full text-black bg-[#4f46e5] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-[#4f46e] text-lg rounded-lg px-5 py-2.5 mt-5 text-center"
           >
             Make Suggestion
           </button>
