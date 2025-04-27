@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Input } from "../../LandingSite/AuthPage/Input";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto"; // !IMPORTANT
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Mess() {
   let requestMessOff = async (event) => {
@@ -25,10 +25,10 @@ function Mess() {
 
     let result = await response.json();
     if (result.success) {
-      setRequests(requests+1);
+      setRequests(requests + 1);
       setLeaveDate("");
       setReturnDate("");
-      toast.success('Mess Off Requested Succesfully!', {
+      toast.success("Mess Off Requested Successfully!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -87,8 +87,6 @@ function Mess() {
     onChange: handlereturnChange,
   };
 
-  // console.log(returnDate);
-
   useEffect(() => {
     let student = JSON.parse(localStorage.getItem("student"));
     setLoading(true);
@@ -137,10 +135,9 @@ function Mess() {
   );
 
   return (
-    
-    <div className="w-full h-screen gap-10 flex flex-col items-center justify-center max-h-screen overflow-y-auto pt-[500px] sm:pt-96 md:pt-96 lg:pt-40 pl-44">
-      <h1 className="text-white font-bold text-5xl">Mess Off</h1>
-      <ul className="flex gap-5 text-white text-xl px-5 sm:p-0 text-center">
+    <div className="w-full h-screen gap-10 flex flex-col items-center justify-center max-h-screen overflow-y-auto pt-40 sm:pt-96 md:pt-96 lg:pt-40 pl-44 bg-[#f3e8ff]">
+      <h1 className="text-[#4f46e] font-bold text-5xl">Mess Off</h1>
+      <ul className="flex gap-5 text-[#4f46e] text-xl px-5 sm:p-0 text-center">
         <li>Total Mess: {daysofmonthtilltoday - Messoff} </li>
         <li>Mess Off: {loading ? loader : Messoff}</li>
         <li>Requests Sent: {loading ? loader : requests}</li>
@@ -154,7 +151,7 @@ function Mess() {
               datasets: [
                 {
                   label: "Mess",
-                  data: [Messoff, requests, daysofmonthtilltoday-Messoff],
+                  data: [Messoff, requests, daysofmonthtilltoday - Messoff],
                   backgroundColor: ["#F26916", "#EAB308", "#1D4ED8"],
                   barThickness: 20,
                   borderRadius: 0,
@@ -172,46 +169,50 @@ function Mess() {
               },
             }}
           />
-          <ul className="text-white">
+          <ul className="text-[#4f46e]">
             <li className="flex gap-2">
-              {" "}
               <span className="w-10 h-5 bg-orange-500 block"></span> Mess Off
             </li>
             <li className="flex gap-2">
-              {" "}
               <span className="w-10 h-5 bg-yellow-500 block"></span> Requested
               Mess
             </li>
             <li className="flex gap-2">
-              {" "}
-              <span className="w-10 h-5 bg-blue-500 block"></span> Mess
-              Attended
+              <span className="w-10 h-5 bg-blue-500 block"></span> Mess Attended
             </li>
           </ul>
         </div>
-        <div className="w-full sm:w-80 max-w-md max-h-60 p-4 border rounded-lg shadow sm:p-8 bg-neutral-950 border-neutral-900 drop-shadow-xl overflow-y-auto">
-          <div className="flex items-center justify-between mb-4">
-            <h5 className="text-xl font-bold leading-none text-white">
+        <div className="w-full sm:w-90 max-w-md max-h-90 p-4 border rounded-lg shadow sm:p-8 bg-white border-neutral-900 drop-shadow-xl overflow-y-auto">
+          <div className="flex items-center justify-between mb-4 ">
+            <h5 className="text-xl font-bold leading-none text-[#4f46e]">
               All Requests
             </h5>
           </div>
           <div className="flow-root">
-            <ul role="list" className="divide-y divide-gray-700 text-white ">
+            <ul role="list" className="divide-y divide-gray-700 text-[#4f46e]">
               {requestsList.length === 0
                 ? "No requests Sent"
                 : requestsList.map((req) => (
                     <li className="py-3 sm:py-4" key={req._id}>
                       <div className="flex items-center space-x-4">
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate text-white">
+                          <p className="text-sm font-medium truncate text-[#4f46e]">
                             {req.status.toUpperCase()}
                           </p>
                           <p className="text-sm truncate text-gray-400">
-                          {new Date(req.leaving_date).toDateString().slice(4, 10)} to {new Date(req.return_date).toDateString().slice(4, 10)}
+                            {new Date(req.leaving_date)
+                              .toDateString()
+                              .slice(4, 10)}{" "}
+                            to{" "}
+                            {new Date(req.return_date)
+                              .toDateString()
+                              .slice(4, 10)}
                           </p>
                         </div>
-                        <div className="flex flex-col items-center text-base font-semibold text-white">
-                        {new Date(req.request_date).toDateString().slice(4,10)}
+                        <div className="flex flex-col items-center text-base font-semibold text-[#4f46e]">
+                          {new Date(req.request_date)
+                            .toDateString()
+                            .slice(4, 10)}
                         </div>
                       </div>
                     </li>
@@ -220,13 +221,14 @@ function Mess() {
           </div>
         </div>
       </div>
+      <div className="mb-8">
       <form
         method="POST"
         onSubmit={requestMessOff}
-        className="bg-neutral-950 py-5 px-10 rounded-lg shadow-xl w-full sm:w-auto"
+        className="bg-white py-5 px-10 rounded-lg shadow-xl w-full sm:w-auto"
       >
-        <div className="flex gap-5">
-          <Input field={leavingDate} />
+        <div className="flex gap-5 ">
+          <Input field={leavingDate} className="bg-white" />
           <Input field={returningDate} />
         </div>
         <button
@@ -252,6 +254,7 @@ function Mess() {
           theme="dark"
         />
       </form>
+      </div>
     </div>
   );
 }
