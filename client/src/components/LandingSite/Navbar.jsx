@@ -1,91 +1,39 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import Logo from '../LandingSite/LandingPage/logo.png';
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const mobileMenuStyles = `flex-col absolute top-0 left-0 w-full h-full bg-gray px-10 bg-black py-40 text-5xl font-bold`;
-
   return (
-    <nav className="flex align-center justify-between p-10 text-white md:px-20">
-      <Link to="/" className="flex z-10 md:py-3 font-bold text-xl lg:text-4xl">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8 lg:w-10 lg:h-10"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-          />
-        </svg>
-        &nbsp; HMS
+    <nav className="flex justify-between items-center p-5 md:px-10 bg-white text-black fixed w-full top-0 left-0 z-50 shadow-md">
+      {/* Logo */}
+      <Link to="/" className="flex items-center space-x-2 font-extrabold text-2xl lg:text-4xl">
+        {/* <span>HMS</span> */}
+        <img src={Logo} height="200px" width="200px"/>
       </Link>
-      <div
-        className={`flex ${
-          menuOpen ? mobileMenuStyles : "hidden"
-        } gap-10 md:flex`}
-      >
-        <Link
-          to="/about"
-          className="md:py-3 md:hover:text-blue-500 transition-all ease-linear"
-        >
-          About
-        </Link>
-        <Link
-          to="/contact"
-          className="md:py-3 md:hover:text-blue-500 transition-all ease-linear"
-        >
-          Contact
-        </Link>
-        <Link
-          to="/auth/request"
-          className="md:py-3 md:hover:text-blue-500 transition-all ease-linear"
-        >
-          Request
-        </Link>
-        <Link
-          to="/rules"
-          className="md:py-3 md:hover:text-blue-500 transition-all ease-linear"
-        >
-          Rules & Guidelines
-        </Link>
-        <Link
-          to="/notices"
-          className="md:py-3 md:hover:text-blue-500 transition-all ease-linear"
-        >
-          NoticeBoard
-        </Link>
-        <Link
-          to="/auth/admin-login"
-          className="md:py-3 md:hover:text-blue-500 transition-all ease-linear"
-        >
-          AdminLogin
-        </Link>
+      {/* Desktop Menu */}
+      <div className="hidden md:flex space-x-10 font-semibold">
+        <Link to="/about" className="hover:text-[#3b82f5] transition">About</Link>
+        <Link to="/contact" className="hover:text-[#3b82f5] transition">Contact</Link>
+        <Link to="/auth/request" className="hover:text-[#3b82f5] transition">Request</Link>
+        <Link to="/rules" className="hover:text-[#3b82f5] transition">Rules & Guidelines</Link>
+        <Link to="/notices" className="hover:text-[#3b82f5] transition">NoticeBoard</Link>
         <Link
           to="/auth/login"
-          className={`md:bg-blue-500 md:hover:bg-blue-700 transition md:text-white font-bold md:text-lg md:py-3 md:mb-3 md:px-8 md:rounded ${
-            menuOpen ? "text-blue-500" : ""
-          }`}
+          className="bg-[#4f46e5] hover:bg-blue-600 text-white px-6 py-2 rounded-md font-bold transition"
         >
           Login
         </Link>
       </div>
-      <div
-        className="md:hidden z-10 py-1"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
+
+      {/* Hamburger Button */}
+      <div className="md:hidden z-50" onClick={() => setMenuOpen(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-8 h-8 text-black"
         >
           <path
             strokeLinecap="round"
@@ -94,7 +42,46 @@ function Navbar() {
           />
         </svg>
       </div>
+
+      {/* Mobile Sidebar Menu */}
+      <div
+        className={`fixed top-0 left-0 h-full bg-white w-[70%] flex flex-col p-8 pt-14 space-y-8 text-xl font-bold text-black shadow-lg transform transition-transform duration-500 ease-in-out ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {/* Close Button */}
+        <div className="absolute top-5 right-5" onClick={() => setMenuOpen(false)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-8 h-8 text-black cursor-pointer"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
+
+        <Link to="/about" onClick={() => setMenuOpen(false)} className="hover:text-[#3b82f5]">About</Link>
+        <Link to="/contact" onClick={() => setMenuOpen(false)} className="hover:text-[#3b82f5]">Contact</Link>
+        <Link to="/auth/request" onClick={() => setMenuOpen(false)} className="hover:text-[#3b82f5]">Request</Link>
+        <Link to="/rules" onClick={() => setMenuOpen(false)} className="hover:text-[#3b82f5]">Rules & Guidelines</Link>
+        <Link to="/notices" onClick={() => setMenuOpen(false)} className="hover:text-[#3b82f5]">NoticeBoard</Link>
+        <Link
+          to="/auth/login"
+          onClick={() => setMenuOpen(false)}
+          className="bg-[#3b82f5] hover:bg-blue-600 text-white px-6 py-2 rounded-md font-bold transition"
+        >
+          Login
+        </Link>
+      </div>
     </nav>
   );
 }
+
 export { Navbar };
