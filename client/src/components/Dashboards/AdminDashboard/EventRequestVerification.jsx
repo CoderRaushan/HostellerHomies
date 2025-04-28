@@ -13,7 +13,7 @@
 //   useEffect(() => {
 //     const fetchEventData = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:3000/api/Event/EventFund/get");
+//         const response = await axios.get("https://hostellerhomesbackend.onrender.com/api/Event/EventFund/get");
 //         setEvents(response.data.eventFundData);
 //       } catch (err) {
 //         setError(err.message);
@@ -39,7 +39,7 @@
 //       return;
 //     }
 //     try {
-//       await axios.put("http://localhost:3000/api/Event/EventFund/admin/update", {
+//       await axios.put("https://hostellerhomesbackend.onrender.com/api/Event/EventFund/admin/update", {
 //         eventFundId: eventId,
 //         status: selectedStatus,
 //       });
@@ -152,6 +152,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const EventRequestVerification = () => {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -161,7 +162,7 @@ const EventRequestVerification = () => {
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/Event/EventFund/get");
+        const response = await axios.get(`${mainUri}/api/Event/EventFund/get`);
         setEvents(response.data.eventFundData);
       } catch (err) {
         setError(err.message);
@@ -187,7 +188,7 @@ const EventRequestVerification = () => {
       return;
     }
     try {
-      await axios.put("http://localhost:3000/api/Event/EventFund/admin/update", {
+      await axios.put(`${mainUri}/api/Event/EventFund/admin/update`, {
         eventFundId: eventId,
         status: selectedStatus,
       });

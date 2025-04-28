@@ -14,6 +14,7 @@ import { getAllStudents } from "../../../../utils";
 import { toast } from "react-toastify";
 
 function Home() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const admin = JSON.parse(localStorage.getItem("admin"));
   const hostels = JSON.parse(localStorage.getItem("admin"));
 
@@ -30,7 +31,7 @@ function Home() {
 
   const getComplaints = async () => {
     const hostels = JSON.parse(localStorage.getItem("admin"));
-    const response = await fetch(`http://localhost:3000/api/complaint/hostel`, {
+    const response = await fetch(`${mainUri}/api/complaint/hostel`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +55,7 @@ function Home() {
   const getSuggestions = async () => {
     const hostels = JSON.parse(localStorage.getItem("admin"));
     const response = await fetch(
-      "http://localhost:3000/api/suggestion/hostel",
+      `${mainUri}/api/suggestion/hostel`,
       {
         method: "POST",
         headers: {
@@ -82,7 +83,7 @@ function Home() {
 
   const getRequests = async () => {
     const hostels = JSON.parse(localStorage.getItem("admin"));
-    const res = await fetch("http://localhost:3000/api/messoff/list", {
+    const res = await fetch(`${mainUri}/api/messoff/list`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

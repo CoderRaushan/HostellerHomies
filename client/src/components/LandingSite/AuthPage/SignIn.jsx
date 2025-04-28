@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"; // You'll need to install this package
 
 export default function SignIn() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: "",
@@ -32,7 +33,7 @@ export default function SignIn() {
     setFormState(prev => ({ ...prev, isLoading: true }));
 
     try {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch(`${mainUri}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -46,7 +47,7 @@ export default function SignIn() {
       if (result.success) {
         localStorage.setItem("token", result.data.token);
 
-        const studentRes = await fetch("http://localhost:3000/api/student/get-student", {
+        const studentRes = await fetch(`${mainUri}/api/student/get-student`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const SecurityGuardSelector = () => {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [guards, setGuards] = useState([]);
   const [selectedGuardId, setSelectedGuardId] = useState("");
   const [onDutyGuard, setOnDutyGuard] = useState(null);
@@ -15,7 +16,7 @@ const SecurityGuardSelector = () => {
   const fetchGuards = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/guard/guards"
+        `${mainUri}/api/guard/guards`
       );
       const guardList = response.data;
       setGuards(guardList);
@@ -40,7 +41,7 @@ const SecurityGuardSelector = () => {
 
     try {
       // Set new guard on duty
-      await axios.put("http://localhost:3000/api/guard/guards/on-duty", {
+      await axios.put(`${mainUri}/api/guard/guards/on-duty`, {
         guardId,
       });
 

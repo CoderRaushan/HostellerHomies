@@ -14,7 +14,7 @@
 //       newPassword: pass,
 //     };
     
-//     let result = await fetch("http://localhost:3000/api/auth/change-password", {
+//     let result = await fetch("https://hostellerhomesbackend.onrender.com/api/auth/change-password", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -90,6 +90,7 @@ import { Input } from "./Input";
 import { useNavigate } from "react-router-dom";
 
 function Settings() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const navigate = useNavigate();
   const [pass, setPass] = useState("");
   const [oldPass, setOldPass] = useState("");
@@ -129,7 +130,7 @@ function Settings() {
       newPassword: pass,
     };
 
-    let result = await fetch("http://localhost:3000/api/auth/change-password", {
+    let result = await fetch(`${mainUri}/api/auth/change-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

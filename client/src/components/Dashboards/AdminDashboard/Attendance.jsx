@@ -8,7 +8,7 @@
 // function Attendance() {
 //   const getALL = async () => {
 //     setProgress(30);
-//     const marked = await fetch("http://localhost:3000/api/attendance/getHostelAttendance", {
+//     const marked = await fetch("https://hostellerhomesbackend.onrender.com/api/attendance/getHostelAttendance", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -55,7 +55,7 @@
 //   const [markedStudents, setMarkedStudents] = useState([]);
 
 //   const markAttendance = async (id, isPresent) => {
-//     const data = await fetch(`http://localhost:3000/api/attendance/mark`, {
+//     const data = await fetch(`https://hostellerhomesbackend.onrender.com/api/attendance/mark`, {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -271,9 +271,10 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from 'react-top-loading-bar'
 
 function Attendance() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const getALL = async () => {
     setProgress(30);
-    const marked = await fetch("http://localhost:3000/api/attendance/getHostelAttendance", {
+    const marked = await fetch(`${mainUri}/api/attendance/getHostelAttendance`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -320,7 +321,7 @@ function Attendance() {
   const [markedStudents, setMarkedStudents] = useState([]);
 
   const markAttendance = async (id, isPresent) => {
-    const data = await fetch("http://localhost:3000/api/attendance/mark", {
+    const data = await fetch(`${mainUri}/api/attendance/mark`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

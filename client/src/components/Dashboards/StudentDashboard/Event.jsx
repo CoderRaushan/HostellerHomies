@@ -6,7 +6,7 @@ import EventStatus from './EventStatus';
 
 const Event = () => {
   const studentId = JSON.parse(localStorage.getItem("student"))?._id || '';
-
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [formData, setFormData] = useState({
     student: studentId,
     name: '',
@@ -21,7 +21,7 @@ const Event = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/api/Event/EventFund/student/get', {
+      const res = await axios.post(`${mainUri}/api/Event/EventFund/student/get`, {
         studentId
       });
       if (res.data.success) {
@@ -48,7 +48,7 @@ const Event = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/api/Event/EventFund", formData);
+      const response = await axios.post(`${mainUri}/api/Event/EventFund`, formData);
       if (response.data.success) {
         setFormData({
           student: studentId,

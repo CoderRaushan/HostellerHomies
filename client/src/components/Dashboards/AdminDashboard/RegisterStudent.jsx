@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function RegisterStudent() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const registerStudent = async (e) => {
     e.preventDefault();
     try {
@@ -27,7 +28,7 @@ function RegisterStudent() {
         password: password
       };
       console.log(student);
-      const res = await fetch("http://localhost:3000/api/student/register-student", {
+      const res = await fetch(`${mainUri}/api/student/register-student`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

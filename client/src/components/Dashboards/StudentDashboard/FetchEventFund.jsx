@@ -8,7 +8,7 @@
 //       useEffect(() => {
 //           const fetchData = async () => {
 //               try {
-//                   const res = await fetch('http://localhost:3000/api/Event/EventFund/student/get');
+//                   const res = await fetch('https://hostellerhomesbackend.onrender.com/api/Event/EventFund/student/get');
 //                   const data = await res.json();
 //                   console.log(data);
 //               } catch (error) {
@@ -32,13 +32,14 @@
 import React, { useState, useEffect } from 'react';
 
 const About = () => {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [event, setEvent] = useState(null);
   const [status, setStatus] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/Event/EventFund/student/get');
+        const res = await fetch(`${mainUri}/api/Event/EventFund/student/get`);
         const data = await res.json();
         console.log(data);
         

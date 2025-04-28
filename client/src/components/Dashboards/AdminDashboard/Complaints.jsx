@@ -8,7 +8,7 @@
 //   const getComplaints = async () => {
 //     const hostels = JSON.parse(localStorage.getItem("admin"));
 //     const response = await fetch(
-//       `http://localhost:3000/api/complaint/hostel`,
+//       `https://hostellerhomesbackend.onrender.com/api/complaint/hostel`,
 //       {
 //         method: "POST",
 //         headers: {
@@ -58,7 +58,7 @@
 
 //   const dismissComplaint = async (id) => {
 //     const response = await fetch(
-//       "http://localhost:3000/api/complaint/resolve/",
+//       "https://hostellerhomesbackend.onrender.com/api/complaint/resolve/",
 //       {
 //         method: "POST",
 //         headers: {
@@ -275,10 +275,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Complaints() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const getComplaints = async () => {
     const hostels = JSON.parse(localStorage.getItem("admin"));
     const response = await fetch(
-      `http://localhost:3000/api/complaint/hostel`,
+      `${mainUri}/api/complaint/hostel`,
       {
         method: "POST",
         headers: {
@@ -323,7 +324,7 @@ function Complaints() {
 
   const dismissComplaint = async (id) => {
     const response = await fetch(
-      "http://localhost:3000/api/complaint/resolve/",
+      `${mainUri}/api/complaint/resolve/`,
       {
         method: "POST",
         headers: {

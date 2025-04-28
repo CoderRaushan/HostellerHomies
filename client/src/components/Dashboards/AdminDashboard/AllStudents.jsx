@@ -4,9 +4,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function AllStudents() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const getCSV = async () => {
     const hostels = JSON.parse(localStorage.getItem('admin'));
-    const res = await fetch("http://localhost:3000/api/student/csv", {
+    const res = await fetch(`${mainUri}/api/student/csv`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +46,7 @@ function AllStudents() {
   const [allStudents, setallStudents] = useState([]);
 
   const deleteStudent = async (id) => {
-    const res = await fetch("http://localhost:3000/api/student/delete-student", {
+    const res = await fetch(`${mainUri}/api/student/delete-student`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

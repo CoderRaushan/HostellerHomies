@@ -5,7 +5,7 @@
 //   const [totalDays, setTotalDays] = useState(0);
 //   const getAttendance = async () => {
 //       let student = JSON.parse(localStorage.getItem("student"));
-//       const res = await fetch("http://localhost:3000/api/attendance/get", {
+//       const res = await fetch("https://hostellerhomesbackend.onrender.com/api/attendance/get", {
 //         method: "POST",
 //         headers:{
 //           "Content-Type": "application/json",
@@ -134,8 +134,9 @@ function Attendance() {
   const [thisWeek, setThisWeek] = useState([]);
 
   const getAttendance = async () => {
+    const mainUri = import.meta.env.VITE_MAIN_URI;
     let student = JSON.parse(localStorage.getItem("student"));
-    const res = await fetch("http://localhost:3000/api/attendance/get", {
+    const res = await fetch(`${mainUri}/api/attendance/get`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

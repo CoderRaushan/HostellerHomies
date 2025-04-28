@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"; // You'll need to install this package
 
 export default function AdminSignIn() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: "",
@@ -23,7 +24,7 @@ export default function AdminSignIn() {
 
   const getHostel = async (adminData) => {
     try {
-      const res = await fetch("http://localhost:3000/api/admin/get-hostel", {
+      const res = await fetch(`${mainUri}/api/admin/get-hostel`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -44,7 +45,7 @@ export default function AdminSignIn() {
 
     try {
       // Step 1: Authenticate user
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch(`${mainUri}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +62,7 @@ export default function AdminSignIn() {
         localStorage.setItem("token", result.data.token);
         
         // Step 2: Get admin details
-        const adminResponse = await fetch("http://localhost:3000/api/admin/get-admin", {
+        const adminResponse = await fetch(`${mainUri}/api/admin/get-admin`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

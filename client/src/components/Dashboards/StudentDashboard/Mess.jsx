@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Mess() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   let requestMessOff = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -15,7 +16,7 @@ function Mess() {
       return_date: returnDate,
     };
 
-    let response = await fetch("http://localhost:3000/api/Messoff/request", {
+    let response = await fetch(`${mainUri}/api/Messoff/request`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +92,7 @@ function Mess() {
     let student = JSON.parse(localStorage.getItem("student"));
     setLoading(true);
     if (student) {
-      fetch("http://localhost:3000/api/Messoff/count", {
+      fetch(`${mainUri}/api/Messoff/count`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

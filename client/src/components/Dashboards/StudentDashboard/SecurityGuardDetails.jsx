@@ -9,7 +9,7 @@
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:3000/api/guard/guards");
+//         const response = await axios.get("https://hostellerhomesbackend.onrender.com/api/guard/guards");
 //         console.log("API Response:", response.data);
 //         setGuardDetails(response.data || []);
 //       } catch (err) {
@@ -71,6 +71,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function SecurityGuardDetails() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [guardDetails, setGuardDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -78,7 +79,7 @@ function SecurityGuardDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/guard/guards");
+        const response = await axios.get(`${mainUri}/api/guard/guards`);
         console.log("API Response:", response.data);
         setGuardDetails(response.data || []);
       } catch (err) {

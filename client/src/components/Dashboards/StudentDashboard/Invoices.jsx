@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 function Invoices() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [invoiceList, setInvoiceList] = useState([]);
   const [totalInvoices, setTotalInvoices] = useState(0);
   const [pendingInvoices, setPendingInvoices] = useState(0);
@@ -8,7 +9,7 @@ function Invoices() {
 
   useEffect(() => {
     let student = JSON.parse(localStorage.getItem("student"));
-    fetch("http://localhost:3000/api/invoice/student", {
+    fetch(`${mainUri}/api/invoice/student`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

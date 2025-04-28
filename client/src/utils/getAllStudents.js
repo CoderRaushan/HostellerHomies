@@ -1,6 +1,7 @@
 const getAllStudents = async () => {
+    const mainUri = import.meta.env.VITE_MAIN_URI;
     const hostels = JSON.parse(localStorage.getItem("admin"));
-    const result = await fetch("http://localhost:3000/api/student/get-all-students", {
+    const result = await fetch(`${mainUri}/api/student/get-all-students`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
