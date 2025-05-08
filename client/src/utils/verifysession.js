@@ -1,5 +1,6 @@
 const verifysession = async () => {
-    let response = await fetch("http://localhost:3000/api/auth/verifysession", {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
+    let response = await fetch(`${mainUri}/api/auth/verifysession`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

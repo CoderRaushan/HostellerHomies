@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"; // You'll need to install this package
 
 export default function SignIn() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: "",
@@ -32,7 +33,7 @@ export default function SignIn() {
     setFormState(prev => ({ ...prev, isLoading: true }));
 
     try {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch(`${mainUri}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -46,7 +47,7 @@ export default function SignIn() {
       if (result.success) {
         localStorage.setItem("token", result.data.token);
 
-        const studentRes = await fetch("http://localhost:3000/api/student/get-student", {
+        const studentRes = await fetch(`${mainUri}/api/student/get-student`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -58,7 +59,16 @@ export default function SignIn() {
         const studentResult = await studentRes.json();
 
         if (studentResult.success) {
-          localStorage.setItem("student", JSON.stringify(studentResult.student));
+          console.log(studentResult.student);
+          if(studentResult.isAdmin)
+          {
+            localStorage.setItem("admin", JSON.stringify(studentResult.student));
+          }
+          else 
+          {
+            localStorage.setItem("student", JSON.stringify(studentResult.student));
+          }
+          
           
           // Show success animation before navigating
           toast.success("Login successful! Redirecting...", {
@@ -99,7 +109,7 @@ export default function SignIn() {
       <div className="w-full max-w-md relative">
         {/* Background decorative elements */}
         <div className="absolute -top-10 -left-10 w-20 h-20 bg-[#4f46e5] rounded-full opacity-10"></div>
-        <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-indigo-600 rounded-full opacity-10"></div>
+        <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white-600 rounded-full opacity-10"></div>
         <div className="absolute top-1/4 right-0 w-16 h-16 bg-purple-500 rounded-full opacity-10 transform translate-x-1/2"></div>
         
         {/* Main card */}

@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { getAllStudents } from "../../../utils";
-import { ToastContainer ,toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AllStudents() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const getCSV = async () => {
-    const hostel = JSON.parse(localStorage.getItem('hostel'))._id;
-    const res = await fetch("http://localhost:3000/api/student/csv", {
+    const hostels = JSON.parse(localStorage.getItem('admin'));
+    const res = await fetch(`${mainUri}/api/student/csv`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ hostel }),
+      body: JSON.stringify({ hostel: hostels.hostel }),
     });
     const data = await res.json();
     if (data.success) {
@@ -19,8 +20,7 @@ function AllStudents() {
       link.href = "data:text/csv;charset=utf-8," + escape(data.csv);
       link.download = 'students.csv';
       link.click();
-      toast.success(
-        'CSV Downloaded Successfully!', {
+      toast.success('CSV Downloaded Successfully!', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -28,16 +28,16 @@ function AllStudents() {
         pauseOnHover: true,
       });
     } else {
-      toast.error(
-        data.errors[0].msg, {
+      toast.error(data.errors[0].msg, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
-      })
+      });
     }
   };
+
   const getAll = async () => {
     const data = await getAllStudents();
     setallStudents(data.students);
@@ -46,7 +46,7 @@ function AllStudents() {
   const [allStudents, setallStudents] = useState([]);
 
   const deleteStudent = async (id) => {
-    const res = await fetch("http://localhost:3000/api/student/delete-student", {
+    const res = await fetch(`${mainUri}/api/student/delete-student`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -56,92 +56,83 @@ function AllStudents() {
     const data = await res.json();
     if (data.success) {
       setallStudents(allStudents.filter((student) => student._id !== id));
-      toast.success(
-        'Student Deleted Successfully!', {
+      toast.success('Student Deleted Successfully!', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
         theme: "dark",
-      })
+      });
     } else {
-      toast.error(
-        data.errors[0].msg, {
+      toast.error(data.errors[0].msg, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
-      })
+      });
     }
   };
-
 
   useEffect(() => {
     getAll();
   }, [allStudents.length]);
 
   return (
-    <div className="w-full h-screen flex flex-col gap-5 items-center justify-center">
-      <h1 className="text-white font-bold text-5xl">All Students</h1>
-      <div className="w-96 flex justify-center">
+    <div className="w-full min-h-screen flex flex-col gap-5 items-center justify-start py-28" style={{ backgroundColor: '#f3e8ff' }}>
+      <h1 className="font-bold text-5xl text-black mb-5">All Students</h1>
+
+      <div className="w-96 flex justify-center mb-5">
         <button
           onClick={getCSV}
-          target="_blank"
-          download={true}
-          className="px-20 py-3 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-xl shadow-xl"
+          className="px-6 py-3 bg-[#4f46e5] hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg"
         >
-          Download List
+          Download CSV
         </button>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover />
       </div>
-      <div className="bg-neutral-950 px-10 py-5 rounded-xl shadow-xl sm:w-[50%] sm:min-w-[500px] w-full mt-5 max-h-96 overflow-auto">
-        <span className="text-white font-bold text-xl">All Students</span>
-        <ul role="list" className="divide-y divide-gray-700 text-white">
-          {allStudents.length === 0 ?
-            "No Students Found"
-          :
-          allStudents.map((student) => (
-            <li className="py-3 px-5 rounded sm:py-4 hover:bg-neutral-700 hover:scale-105 transition-all" key={student._id}>
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0 text-white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                    />
-                  </svg>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate text-white">
-                    {student.name}
-                  </p>
-                  <p className="text-sm truncate text-gray-400">
-                    {student.urn} | Room: {student.room_no}
-                  </p>
+
+      <div className="bg-white px-8 py-6 rounded-2xl shadow-2xl sm:w-[50%] sm:min-w-[500px] w-full max-h-[500px] overflow-y-auto border border-gray-300">
+        <span className="text-black font-bold text-2xl block mb-5 text-center">Student List</span>
+
+        <ul role="list" className="divide-y divide-gray-200">
+          {allStudents.length === 0 ? (
+            <p className="text-center text-gray-500">No Students Found</p>
+          ) : (
+            allStudents.map((student) => (
+              <li
+                key={student._id}
+                className="py-4 px-4 flex items-center justify-between hover:bg-[#f3e8ff] rounded-lg transition-all group"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0 text-[#4f46e5]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-8 h-8"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-lg font-semibold text-black truncate">
+                      {student.name}
+                    </p>
+                    <p className="text-sm text-gray-600 truncate">
+                      {student.urn} | Room: {student.room_no}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex gap-3">
-                  <button className="hover:underline hover:text-green-600 hover:scale-125 transition-all">
+                  <button className="hover:text-[#4f46e5] hover:scale-110 transition-all">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -157,7 +148,10 @@ function AllStudents() {
                       />
                     </svg>
                   </button>
-                  <button className="hover:underline hover:text-red-500 hover:scale-125 transition-all" onClick={() => deleteStudent(student._id)}>
+                  <button
+                    onClick={() => deleteStudent(student._id)}
+                    className="hover:text-red-600 hover:scale-110 transition-all"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -173,24 +167,24 @@ function AllStudents() {
                       />
                     </svg>
                   </button>
-                  <ToastContainer 
-                    position="top-right"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="dark"/>
-
                 </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))
+          )}
         </ul>
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

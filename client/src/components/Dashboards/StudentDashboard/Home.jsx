@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 
 const List = () => {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [invoiceList, setInvoiceList] = useState([
     {
       title: "Mess bill",
@@ -19,7 +20,7 @@ const List = () => {
 
   useEffect(() => {
     let student = JSON.parse(localStorage.getItem("student"));
-    fetch("http://localhost:3000/api/invoice/student", {
+    fetch(`${mainUri}/api/invoice/student`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -122,7 +123,7 @@ function Home() {
 
   const getAttendance = async () => {
     let student = JSON.parse(localStorage.getItem("student"));
-    const res = await fetch("http://localhost:3000/api/attendance/get", {
+    const res = await fetch(`${mainUri}/api/attendance/get`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

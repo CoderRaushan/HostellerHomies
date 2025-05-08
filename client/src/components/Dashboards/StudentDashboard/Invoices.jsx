@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 function Invoices() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [invoiceList, setInvoiceList] = useState([]);
   const [totalInvoices, setTotalInvoices] = useState(0);
   const [pendingInvoices, setPendingInvoices] = useState(0);
@@ -8,7 +9,7 @@ function Invoices() {
 
   useEffect(() => {
     let student = JSON.parse(localStorage.getItem("student"));
-    fetch("http://localhost:3000/api/invoice/student", {
+    fetch(`${mainUri}/api/invoice/student`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +48,7 @@ function Invoices() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#f3e8ff] flex flex-col gap-8 items-center py-10 px-4 overflow-y-auto">
+    <div className="w-full min-h-screen bg-[#f3e8ff] flex flex-col gap-8 items-center py-10 px-4 overflow-y-auto mt-12">
       {/* Heading */}
       <h1 className="text-5xl font-bold text-[#4f46e5]">Invoices</h1>
       <p className="text-lg text-center text-black max-w-xl">

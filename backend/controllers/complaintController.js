@@ -33,12 +33,14 @@ exports.registerComplaint = async (req, res) => {
 // @desc    Get all complaints by hostel id
 // @access  Public
 exports.getbyhostel = async (req, res) => {
+    console.log("api com hostel")
     let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array(), success });
     }
     const { hostel } = req.body;
+    console.log("hostel",hostel);
     try {
         const complaints = await Complaint.find({ hostel }).populate('student', ['name', 'room_no']);
         success = true;

@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"; // You'll need to install this package
 
 export default function RequestAcc() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const [inputData, setInputData] = useState({
     urn: '',
     isLoading: false
@@ -23,7 +24,7 @@ export default function RequestAcc() {
     setInputData(prev => ({ ...prev, isLoading: true }));
 
     try {
-      const response = await fetch("http://localhost:3000/api/request/register", {
+      const response = await fetch(`${mainUri}/api/request/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,10 +4,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Suggestions() {
+  const mainUri = import.meta.env.VITE_MAIN_URI;
   const registerSuggestions = async (e) => {
     e.preventDefault();
     const student = JSON.parse(localStorage.getItem("student"));
-    const response = await fetch("http://localhost:3000/api/suggestion/register", {
+    const response = await fetch(`${mainUri}/api/suggestion/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +74,7 @@ function Suggestions() {
           <textarea
             name="suggestion"
             placeholder="Suggestions..."
-            className="border sm:text-sm rounded-lg block w-full p-3 bg-white-800 border-[#4f46e] placeholder-gray-400 text-white focus:ring-[#4f46e] focus:border-[#4f46e] outline-none"
+            className="border sm:text-sm rounded-lg block w-full p-3 bg-white-800 border-[#4f46e] placeholder-gray-400 text-black focus:ring-[#4f46e] focus:border-[#4f46e] outline-none"
             onChange={descChange}
             value={desc}
           ></textarea>
