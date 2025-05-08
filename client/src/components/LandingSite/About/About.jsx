@@ -19,7 +19,7 @@ function About() {
   };
   const jay = {
     name: "Jay",
-    designation: "Frontend Developer",
+    designation: "MERN Stack Developer",
     image:
       "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",
     linkedin: "https://www.linkedin.com/in/jay-kumar-b9b29125b/",
