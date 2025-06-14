@@ -73,6 +73,7 @@ const NoticeBoard = () => {
           sx={{
             background: "linear-gradient(45deg, #4f46e5, #7c3aed)",
             backgroundClip: "text",
+            
             WebkitBackgroundClip: "text",
             color: "transparent",
             fontWeight: 800,
