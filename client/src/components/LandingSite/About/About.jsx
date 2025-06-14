@@ -32,7 +32,7 @@ function About() {
   return (
     <div style={{ backgroundColor: "#f3e8ff" }} className="min-h-screen ">
      <h1 
-  className="font-extrabold text-center text-2xl sm:text-4xl lg:text-5xl pt-11  mt-16
+  className="font-bold text-center text-2xl sm:text-4xl lg:text-5xl pt-11  mt-16
     text-black hover:scale-105 transition-transform duration-300
     tracking-tight leading-tight
     mb-4 relative z-10"
