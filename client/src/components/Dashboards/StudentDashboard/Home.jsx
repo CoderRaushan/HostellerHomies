@@ -10,12 +10,7 @@ const List = () => {
       amount: "Rs. 690",
       status: "pending",
     },
-    {
-      title: "Mess bill",
-      date: "20-5-2023",
-      amount: "Rs. 690",
-      status: "pending",
-    },
+    
   ]);
 
   useEffect(() => {
@@ -29,9 +24,9 @@ const List = () => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("Invoice API response:", data.invoices[0].amount); // <-- Add this line
+      console.log("Invoice API response:", data); // <-- Add this line
       if (data.success) {
-        let invoices = data.invoices[0];
+        let invoice = data.invoices[0];
         let list = [];
         invoices.forEach((invoice) => {
           if (invoice.status.toLowerCase() === "pending") {

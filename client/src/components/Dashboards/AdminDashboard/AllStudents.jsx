@@ -290,7 +290,7 @@ function AllStudents() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-base md:text-lg font-semibold text-black truncate">{student.name}</p>
-                    <p className="text-sm text-gray-600 truncate">{student.urn} | Room: {student.room_no}</p>
+                    <p className="text-sm text-gray-600 truncate">{student.urn} | Room: {student.room_no} | A/C: {student.accountNumber}</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
