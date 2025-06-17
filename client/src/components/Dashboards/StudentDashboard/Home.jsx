@@ -29,9 +29,9 @@ const List = () => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("Invoice API response:", data); // <-- Add this line
+      console.log("Invoice API response:", data.invoices[0].amount); // <-- Add this line
       if (data.success) {
-        let invoices = data.invoices;
+        let invoices = data.invoices[0];
         let list = [];
         invoices.forEach((invoice) => {
           if (invoice.status.toLowerCase() === "pending") {
