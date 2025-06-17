@@ -13,8 +13,9 @@ const registerStudent = async (req, res) => {
 
     const {
         name, urn, room_no, batch, dept, course,
-        email, father_name, contact, address,
-        dob, uidai, hostel, password
+        accountNumber,
+        email, father_name, contact, address, 
+        dob, uidai, hostel, password, 
     } = req.body;
 
     try {
@@ -63,6 +64,7 @@ const registerStudent = async (req, res) => {
             address,
             dob,
             uidai,
+            accountNumber,
             user: user._id,
             hostel: shostel._id
         });

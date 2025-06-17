@@ -9,6 +9,7 @@ exports.generateInvoices = async (req, res) => {
     let success = false;
     const { hostel } = req.body;
     const students = await Student.find({ hostel });
+<<<<<<< HEAD
     console.log(students);
 
     // const invoices = await Invoice.find({ student: { $in: students }, date: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1) } })
@@ -59,6 +60,14 @@ exports.updateStudent = async (req, res) => {
 
     if (!errors.isEmpty()) {
         return res.status(400).json({ success, errors: errors.array() });
+=======
+    const invoices = await Invoice.find({
+        student: { $in: students },
+        date: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1) }
+    });
+    if (invoices.length === students.length) {
+        return res.status(400).json({ errors: 'Invoices already generated', success });
+>>>>>>> dfe37f2c9917fd9182fcebeda1ca610c554f68b1
     }
 
     const {
@@ -67,6 +76,7 @@ exports.updateStudent = async (req, res) => {
         dob, uidai, hostel, password
     } = req.body;
 
+<<<<<<< HEAD
     try {
         const studentId = req.params.id; 
         let student = await Student.findById(studentId).populate('user');
@@ -152,6 +162,37 @@ exports.updateStudent = async (req, res) => {
 
 
 
+=======
+    let count = 0;
+    try {
+        await Promise.all(students.map(async (student) => {
+            let amount = Mess_bill_per_day * daysinlastmonth;
+            let messoff = await MessOff.find({ student: student });
+            if (messoff) {
+                messoff.forEach((messoffone) => {
+                    if (messoffone.status === 'approved' && messoffone.return_date.getMonth() + 1 === new Date().getMonth()) {
+                        let leaving_date = messoffone.leaving_date;
+                        let return_date = messoffone.return_date;
+                        let number_of_days = (return_date - leaving_date) / (1000 * 60 * 60 * 24);
+                        amount -= Mess_bill_per_day * number_of_days;
+                    }
+                });
+            }
+            let invoice = new Invoice({
+                student,
+                amount
+            });
+            await invoice.save();
+            count++;
+        }));
+        success = true;
+        res.status(200).json({ success, count });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+>>>>>>> dfe37f2c9917fd9182fcebeda1ca610c554f68b1
 // @route   GET api/invoice/getbyid
 // @desc    Get all invoices
 // @access  Public
