@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 const ComplaintSchema = new Schema({
     student: {
         type: Schema.Types.ObjectId,
@@ -33,4 +36,6 @@ const ComplaintSchema = new Schema({
     }
 });
 
+// TTL index: delete document 7 days after resolvedAt is set
 ComplaintSchema.index({ resolvedAt: 1 }, { expireAfterSeconds: 604800 });
+module.exports = Complaint = mongoose.model('complaint',ComplaintSchema);
