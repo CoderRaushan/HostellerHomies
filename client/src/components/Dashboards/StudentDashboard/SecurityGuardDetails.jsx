@@ -79,9 +79,9 @@ function SecurityGuardDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${mainUri}/api/guard/guards`);
-        console.log("API Response:", response.data);
-        setGuardDetails(response.data || []);
+        const response = await axios.get(`${mainUri}/api/guard`);
+        // Only show guards with status "Active"
+        setGuardDetails(response.data.guards || []);
       } catch (err) {
         setError("Failed to fetch security guard details.");
       } finally {
@@ -90,7 +90,7 @@ function SecurityGuardDetails() {
     };
 
     fetchData();
-  }, []);
+  }, [mainUri]);
 
   if (loading) {
     return (
@@ -110,9 +110,12 @@ function SecurityGuardDetails() {
     );
   }
 
+  // Filter for guards with status "Active"
+  const activeGuards = guardDetails.filter(guard => guard.status === "Active");
+
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen p-6"
+      className="flex flex-col items-center justify-center min-h-screen p-6 m-16"
       style={{ backgroundColor: "#f3e8ff" }}
     >
       <div
@@ -126,8 +129,8 @@ function SecurityGuardDetails() {
           Security Guard Details
         </h2>
 
-        {guardDetails.map((guard, index) => (
-          guard.onDuty && (
+        {activeGuards.length > 0 ? (
+          activeGuards.map((guard, index) => (
             <div
               key={index}
               className="mb-6 p-6 rounded-2xl shadow-md"
@@ -148,17 +151,15 @@ function SecurityGuardDetails() {
               <p className="text-lg font-semibold mb-2" style={{ color: "#000000" }}>
                 <span style={{ color: "#4f46e5" }}>Post:</span> {guard.post}
               </p>
-              {/* <p className="text-lg font-semibold" style={{ color: "#000000" }}>
-                <span style={{ color: "#4f46e5" }}>On Duty:</span>{" "}
-                <span className="ml-1" style={{ color: guard.onDuty ? "#22c55e" : "#ef4444" }}>
-                  {guard.onDuty ? "Yes" : "No"}
+              <p className="text-lg font-semibold" style={{ color: "#000000" }}>
+                <span style={{ color: "#4f46e5" }}>Status:</span>{" "}
+                <span className="ml-1" style={{ color: "#22c55e" }}>
+                  Active
                 </span>
-              </p> */}
+              </p>
             </div>
-          )
-        ))}
-
-        {guardDetails.filter(guard => guard.onDuty).length === 0 && (
+          ))
+        ) : (
           <p className="text-center text-xl font-medium" style={{ color: "#000000" }}>
             No guards currently on duty.
           </p>
