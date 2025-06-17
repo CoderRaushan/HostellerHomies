@@ -177,10 +177,11 @@ function Complaints() {
               <p className="text-gray-500 text-center py-4">No complaints found</p>
             ) : (
               regComplaints.map((complain, index) => (
+                console.log(complain.status),
                 <li key={index} className="py-3">
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
-                      {complain.status?.toLowerCase() === "resolved" ? "✅" : "⏳"}
+                      {complain.status?.toLowerCase() === "solved" ? "Sloved" : "Pending"}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium truncate text-gray-800">{complain.title}</p>
