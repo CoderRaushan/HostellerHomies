@@ -240,7 +240,17 @@ function Complaints() {
                     // </li>
                     <li key={index} className="py-3">
                       <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium truncate text-gray-800">
+                            {complain.title}
+                          </p>
+                          <p className="text-sm truncate text-gray-500">
+                            {complain.date
+                              ? new Date(complain.date).toLocaleDateString()
+                              : "No Date"}
+                          </p>
+                        </div>
+                         <div className="flex-shrink-0">
                           <span
                             className={`px-3 py-1 rounded-full text-xs font-semibold ${
                               complain.status?.toLowerCase() === "solved"
@@ -252,16 +262,6 @@ function Complaints() {
                               ? "Solved"
                               : "Pending"}
                           </span>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate text-gray-800">
-                            {complain.title}
-                          </p>
-                          <p className="text-sm truncate text-gray-500">
-                            {complain.date
-                              ? new Date(complain.date).toLocaleDateString()
-                              : "No Date"}
-                          </p>
                         </div>
                       </div>
                     </li>
