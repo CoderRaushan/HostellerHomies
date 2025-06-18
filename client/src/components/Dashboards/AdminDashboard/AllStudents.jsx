@@ -195,6 +195,7 @@ import { useState, useEffect } from "react";
 import { getAllStudents } from "../../../utils";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 function AllStudents() {
   const mainUri = import.meta.env.VITE_MAIN_URI;
@@ -295,6 +296,7 @@ function AllStudents() {
                 </div>
                 <div className="flex gap-3">
                   <button className="hover:text-[#4f46e5] hover:scale-110 transition-all">
+                    <Link to={`/admin-dashboard/student/${student._id}`}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -309,6 +311,7 @@ function AllStudents() {
                         d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"
                       />
                     </svg>
+                    </Link>
                   </button>
                   <button
                     onClick={() => deleteStudent(student._id)}

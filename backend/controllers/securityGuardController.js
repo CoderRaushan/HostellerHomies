@@ -44,6 +44,7 @@ module.exports = {
   setGuardOnDuty,
 };
 
+
 // Add a new guard
 // const Guard = require("../models/SecurityGuard");
 
@@ -102,3 +103,4 @@ module.exports = {
 //     res.status(500).json({ success: false, message: err.message });
 //   }
 // };
+
