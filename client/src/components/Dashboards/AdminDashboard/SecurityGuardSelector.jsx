@@ -10,6 +10,7 @@ function SecurityGuardSelector() {
     shift: "Day",
     post: "",
     contact: "",
+    status: "Inactive",
   });
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -49,7 +50,14 @@ function SecurityGuardSelector() {
       .then((data) => {
         setLoading(false);
         if (data.success) {
-          setForm({ name: "", guardId: "", shift: "Day", post: "", contact: "" });
+          setForm({
+            name: "",
+            guardId: "",
+            shift: "Day",
+            post: "",
+            contact: "",
+            status: "Inactive",
+          });
           setEditingId(null);
           fetchGuards();
         } else {
@@ -70,6 +78,7 @@ function SecurityGuardSelector() {
       shift: g.shift,
       post: g.post,
       contact: g.contact,
+      status: g.status || "Inactive",
     });
     setEditingId(g._id);
   };
@@ -89,7 +98,7 @@ function SecurityGuardSelector() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4 mt-16">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-6 md:p-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#4f46e5] text-center">
           {editingId ? "Edit Guard" : "Add New Guard"}
@@ -139,6 +148,18 @@ function SecurityGuardSelector() {
                 className="w-full border rounded px-3 py-2"
               />
             </div>
+            <div>
+              <label className="block text-sm font-medium">Status</label>
+              <select
+                name="status"
+                value={form.status}
+                onChange={handleChange}
+                className="w-full border rounded px-3 py-2"
+              >
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-medium">Contact</label>
               <input
@@ -169,7 +190,14 @@ function SecurityGuardSelector() {
                 type="button"
                 onClick={() => {
                   setEditingId(null);
-                  setForm({ name: "", guardId: "", shift: "Day", post: "", contact: "" });
+                  setForm({
+                    name: "",
+                    guardId: "",
+                    shift: "Day",
+                    post: "",
+                    contact: "",
+                    status: "Inactive",
+                  });
                 }}
                 className="px-4 py-2 rounded border border-gray-400 text-gray-700"
               >
