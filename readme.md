@@ -2,7 +2,7 @@
 
 Welcome to **HostellerHomies**, your go-to solution for seamless hostel life! This repository powers the backend of the **HostellerHomies** app, handling all the crucial features that make hostel life smooth, including **room management**, **mess services**, **notifications**, and more.
 
-🚀 **Project Link**: [HostellerHomies](https://github.com/CoderRaushan/HostellerHomies)
+🚀 **Project Link**: [HostellerHomies](https://hostellerhomiess.netlify.app/)
 
 ## 🔥 Features
 
