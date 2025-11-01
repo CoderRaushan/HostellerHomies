@@ -67,7 +67,7 @@ const StudentSchema = new Schema({
     },
     hostel:{
         type:Schema.Types.ObjectId,
-        ref:'hostel'
+        ref:'Hostel'
     },
     date:{
         type:Date,
