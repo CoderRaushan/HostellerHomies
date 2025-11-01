@@ -40,7 +40,7 @@ const EventFundSchema = new Schema({
     },
     remark: {
         type: String,
-        default: "not required",
+        default: "",
     }
 }, { timestamps: true });
 

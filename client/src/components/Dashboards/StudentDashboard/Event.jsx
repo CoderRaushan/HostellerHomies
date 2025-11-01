@@ -240,9 +240,9 @@ const Event = () => {
                 </p>
 
                 {/* ✅ Show Admin Remark if available */}
-                {event.remark && event.remark !== "Not required" && (
+                {event.remark && (
                   <p className="text-sm text-red-600 mt-2">
-                    <strong>Admin Remark:</strong> {event.remark}
+                    <strong>Remark:</strong> {event.remark}
                   </p>
                 )}
               </div>
