@@ -67,29 +67,9 @@ export default function CaretakerIndex() {
         </svg>
       ),
     },
-    // {
-    //   text: "Rooms",
-    //   url: "/caretaker-dashboard/rooms",
-    //   svg: (
-    //     <svg
-    //       xmlns="http://www.w3.org/2000/svg"
-    //       fill="none"
-    //       viewBox="0 0 24 24"
-    //       strokeWidth={1.5}
-    //       stroke="currentColor"
-    //       className="w-6 h-6"
-    //     >
-    //       <path
-    //         strokeLinecap="round"
-    //         strokeLinejoin="round"
-    //         d="M2.25 18.75V9.75a2.25 2.25 0 012.25-2.25h15a2.25 2.25 0 012.25 2.25v9m-19.5 0h19.5m-15-9V6a1.5 1.5 0 011.5-1.5h3A1.5 1.5 0 0110.5 6v3.75m-3 0h6"
-    //       />
-    //     </svg>
-    //   ),
-    // },
     {
-      text: "Guard Selector",
-      url: "/caretaker-dashboard/security-guard-selector",
+      text: "Rooms",
+      url: "/caretaker-dashboard/rooms",
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -107,6 +87,7 @@ export default function CaretakerIndex() {
         </svg>
       ),
     },
+    
   ];
 
   const caretaker = JSON.parse(localStorage.getItem("Caretaker"));

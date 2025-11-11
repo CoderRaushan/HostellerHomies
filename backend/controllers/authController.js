@@ -512,8 +512,15 @@ exports.CreateStaff = async (req, res) => {
 
 exports.getAllStaffDetailsbySecurityInch = async (req, res) => {
   try {
-    const securityGuard = await Guard.find({}).select('-password');
-    // Send response
+    const { hostelNo } = req.query; // Get hostel number from query string
+
+    let filter = {};
+    if (hostelNo && hostelNo !== "ALL") {
+      filter = { hostelNo: hostelNo }; // Filter by hostelNo if not ALL
+    }
+
+    const securityGuard = await Guard.find(filter).select("-password");
+
     return res.status(200).json({
       success: true,
       StaffDetails: securityGuard,
@@ -526,6 +533,7 @@ exports.getAllStaffDetailsbySecurityInch = async (req, res) => {
     });
   }
 };
+
 
 exports.getAllStaffDetails = async (req, res) => {
   try {
