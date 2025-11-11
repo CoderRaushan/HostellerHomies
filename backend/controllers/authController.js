@@ -537,30 +537,32 @@ exports.getAllStaffDetailsbySecurityInch = async (req, res) => {
 
 exports.getAllStaffDetails = async (req, res) => {
   try {
-    const [caretakers, guards, wardens, managers, privilegedStudents, securityIncharge] = await Promise.all([
-      Caretaker.find({}).select('-password'),
-      Guard.find({}).select('-password'),
-      Warden.find({}).select('-password'),
-      Manager.find({}).select('-password'),
-      PrivilegedStudent.find({}).select('-password'),
-      SecurityIncharge.find({}).select('-password'),
+    const { hostelNo } = req.body; // ✅ receive hostel number from frontend
+
+    if (!hostelNo) {
+      return res.status(400).json({
+        success: false,
+        errors: [{ msg: "Hostel number is required." }],
+      });
+    }
+
+    const [caretakers, wardens, managers, privilegedStudents, securityIncharges] = await Promise.all([
+      Caretaker.find({ hostelNo }).select('-password'),
+      Warden.find({ hostelNo }).select('-password'),
+      Manager.find({ hostelNo }).select('-password'),
+      PrivilegedStudent.find({ hostelNo }).select('-password'),
+      SecurityIncharge.find().select('-password'),
     ]);
 
-    // Combine all staff members into one array
-    const allStaff = [
-      ...wardens,
-      ...managers,
-      ...caretakers,
-      ...securityIncharge,
-      ...guards,
-      ...privilegedStudents,
-    ];
-
-    // Send response
     return res.status(200).json({
       success: true,
-      total: allStaff.length,
-      StaffDetails: allStaff,
+      staff: {
+        wardens,
+        managers,
+        caretakers,
+        securityIncharges,
+        privilegedStudents,
+      },
     });
   } catch (error) {
     console.error("Error fetching staff details:", error.message);
@@ -570,6 +572,7 @@ exports.getAllStaffDetails = async (req, res) => {
     });
   }
 };
+
 exports.DeleteGuard = async (req, res) => {
   try {
     const { id } = req.body;

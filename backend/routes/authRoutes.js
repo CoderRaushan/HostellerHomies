@@ -11,7 +11,7 @@ router.post('/create-guard',IsSecurityIncharge, CreateGuard);
 router.post('/update-guard',IsSecurityIncharge, UpdateGuard);
 router.post('/delete-guard',IsSecurityIncharge, DeleteGuard);
 router.get('/securityinch/get-all-staff-details',IsSecurityIncharge, getAllStaffDetailsbySecurityInch);
-router.get('/get-all-staff-details',IsSuperAdmin, getAllStaffDetails);
+router.post('/get-all-staff-details',IsSuperAdmin, getAllStaffDetails);
 router.post('/delete-staff', IsSuperAdmin, DeleteStaff);
 router.post('/change-password', [
     check('email', 'Please include a valid email').isEmail(),
