@@ -53,6 +53,11 @@ import GuardIndex from "./components/Dashboards/Guard/GuardIndex.jsx";
 import GuardHome from "./components/Dashboards/Guard/Home/GuardHome.jsx";
 import WardenIndex from "./components/Dashboards/WardenDashboard/GuardIndex.jsx";
 import WardendHome from "./components/Dashboards/WardenDashboard/Home/WardenHome.jsx";
+import SIIndex from "./components/Dashboards/SecurityInchargeDashboard/SIIndex.jsx";
+import SIHome from "./components/Dashboards/SecurityInchargeDashboard/SIHome.jsx";
+
+import CreateGuard from "./components/Dashboards/SecurityInchargeDashboard/CreateGuard.jsx";
+import UpdateGuard from "./components/Dashboards/SecurityInchargeDashboard/UpdateGuard.jsx";
 
 function App() {
   return (
@@ -111,10 +116,6 @@ function App() {
           <Route path="all-students" element={<AllStudents />} />
           <Route path="student/:id" element={<StudentEditForm />} />
           <Route path="rooms" element={<Room />} />
-          <Route
-            path="security-guard-selector"
-            element={<SecurityGuardSelector />}
-          />
         </Route>
         {/* Guard Dashboard */}
         <Route path="/guard-dashboard" element={<GuardIndex />}>
@@ -131,6 +132,17 @@ function App() {
             element={<EventRequestVerification />}
           />
           <Route path="rooms" element={<Room />} />
+        </Route>
+
+        {/* SecurityIncharge dashboard */}
+        <Route path="/securityincharge-dashboard" element={<SIIndex />}>
+          <Route index element={<SIHome />} />
+          <Route path="create-guard" element={<CreateGuard />} />
+          <Route path="update-guard" element={<UpdateGuard />} />
+           <Route
+            path="manage-guard"
+            element={<SecurityGuardSelector />}
+          />
         </Route>
 
         <Route path="/admin-dashboard" element={<AdminIndex />}>

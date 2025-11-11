@@ -342,7 +342,7 @@ function CaretakerGuardDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 mt-16">
+    <div className=" flex  justify-center p-4  mt-16">
       <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-6 md:p-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#4f46e5] text-center">
           All Security Guards

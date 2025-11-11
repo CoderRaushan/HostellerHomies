@@ -458,6 +458,7 @@
 // };
 
 // export default UpdateStaff;
+
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
@@ -741,6 +742,7 @@ const UpdateStaff = () => {
                   <option value="3">Hostel 3</option>
                   <option value="4">Hostel 4</option>
                   <option value="5">Hostel 5</option>
+                  <option value="NA">NA</option>
                 </select>
 
                 <div className="flex justify-end gap-3 mt-4">
