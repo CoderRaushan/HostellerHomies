@@ -705,9 +705,6 @@ import { useParams } from "react-router-dom";
 
 function StudentEditForm() {
   const mainUri = import.meta.env.VITE_MAIN_URI;
-  const storedAdmin = JSON.parse(localStorage.getItem("admin"));
-  const hostel = storedAdmin?.hostel?.name || "Hostel No 1";
-
   const [allStudents, setAllStudents] = useState(null);
   const [urn, seturn] = useState("");
   const [name, setName] = useState("");
@@ -721,8 +718,10 @@ function StudentEditForm() {
   const [address, setAddress] = useState("");
   const [dob, setDob] = useState("");
   const [uidai, setuidai] = useState("");
-  const [password, setPassword] = useState("");
+    const [hostel, setHostel] = useState("");
+  // const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token");
   const { id } = useParams();
 
   const getAll = async () => {
@@ -757,7 +756,7 @@ function StudentEditForm() {
       setAddress(allStudents.address || "");
       setDob(allStudents.dob?.split("T")[0] || "");
       setuidai(allStudents.uidai || "");
-      setPassword(""); // optional: keep it blank for security
+
     }
   }, [allStudents]);
 
@@ -783,7 +782,9 @@ function StudentEditForm() {
 
       const res = await fetch(`${mainUri}/api/student/update-student/${id}`, {
         method: "PUT", // or PATCH
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+         },
         body: JSON.stringify(student),
       });
       const data = await res.json();
@@ -859,13 +860,24 @@ function StudentEditForm() {
               value: room_no, onChange: (e) => setRoomNo(e.target.value),
             }} />
             <Input field={{
-              name: "hostel", placeholder: "Hostel", type: "text", req: true,
-              value: hostel, disabled: true,
-            }} />
-            <Input field={{
               name: "dept", placeholder: "Department", type: "text", req: true,
               value: dept, onChange: (e) => setDept(e.target.value),
             }} />
+            <select
+              name="hostel"
+              id="hostel"
+              className="bg-gray-200 p-1"
+              value={hostel}
+              onChange={(e) => setHostel(e.target.value)}
+              required
+            >
+              <option value="">Select Hostel</option>
+              <option value="1" selected>Hostel No 1</option>
+              <option value="2">Hostel No 2</option>
+              <option value="3">Hostel No 3</option>
+              <option value="4">Hostel No 4</option>
+              <option value="5">Hostel No 5</option>
+            </select>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
