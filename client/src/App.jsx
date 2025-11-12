@@ -62,6 +62,7 @@ import UpdateGuard from "./components/Dashboards/SecurityInchargeDashboard/Updat
 import StudentRooms from "./components/Dashboards/StudentDashboard/StudentRooms.jsx";
 import SARooms from "./components/Dashboards/SuperAdminDashboard/SARooms.jsx";
 import SAAllStudent from "./components/Dashboards/SuperAdminDashboard/SAAllStudent.jsx";
+import ChiefWardenEventVerification from "./components/Dashboards/SuperAdminDashboard/ChiefWardenEventVerification.jsx"
 function App() {
   return (
     <>
@@ -103,6 +104,8 @@ function App() {
           <Route path="profile" element={<SAProfile />} />
           <Route path="rooms" element={<SARooms />} />
           <Route path="all-student" element={<SAAllStudent />} />
+          <Route path="all-student" element={<SAAllStudent/>} />
+          <Route path="event-fund" element={<ChiefWardenEventVerification/>} />
         </Route>
         {/* manager-dashboard */}
         <Route path="/manager-dashboard" element={<ManagerIndex />}>
@@ -140,6 +143,7 @@ function App() {
             element={<EventRequestVerification />}
           />
           <Route path="rooms" element={<Room />} />
+
         </Route>
 
         {/* SecurityIncharge dashboard */}
