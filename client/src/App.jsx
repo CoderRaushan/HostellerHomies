@@ -19,6 +19,8 @@ import Settings from "./components/Dashboards/StudentDashboard/Settings";
 import AdminIndex from "./components/Dashboards/AdminDashboard/Index";
 import AdminHome from "./components/Dashboards/AdminDashboard/Home/Home";
 
+import CaretakerSuggestions from "./components/Dashboards/CaretakerDashboard/Suggestions";
+
 import AdminAttendance from "./components/Dashboards/AdminDashboard/Attendance";
 import AdminComplaints from "./components/Dashboards/AdminDashboard/Complaints";
 import AdminInvoices from "./components/Dashboards/AdminDashboard/Invoices";
@@ -100,7 +102,7 @@ function App() {
           <Route path="create-staff" element={<CreateStaff />} />
           <Route path="profile" element={<SAProfile />} />
           <Route path="rooms" element={<SARooms />} />
-          <Route path="all-student" element={<SAAllStudent/>} />
+          <Route path="all-student" element={<SAAllStudent />} />
         </Route>
         {/* manager-dashboard */}
         <Route path="/manager-dashboard" element={<ManagerIndex />}>
@@ -118,6 +120,10 @@ function App() {
           <Route path="all-students" element={<AllStudents />} />
           <Route path="student/:id" element={<StudentEditForm />} />
           <Route path="rooms" element={<Room />} />
+          <Route
+            path="/caretaker-dashboard/suggestions"
+            element={<CaretakerSuggestions />}
+          />
         </Route>
         {/* Guard Dashboard */}
         <Route path="/guard-dashboard" element={<GuardIndex />}>
@@ -141,10 +147,7 @@ function App() {
           <Route index element={<SIHome />} />
           <Route path="create-guard" element={<CreateGuard />} />
           <Route path="update-guard" element={<UpdateGuard />} />
-           <Route
-            path="manage-guard"
-            element={<SecurityGuardSelector />}
-          />
+          <Route path="manage-guard" element={<SecurityGuardSelector />} />
         </Route>
 
         <Route path="/admin-dashboard" element={<AdminIndex />}>
